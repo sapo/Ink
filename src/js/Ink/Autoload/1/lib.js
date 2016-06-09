@@ -36,6 +36,7 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
             'Animate_1'     : '.ink-animate',
             'Carousel_1'    : '.ink-carousel',
             'DatePicker_1'  : '.ink-datepicker',
+            'DragDrop_1'    : '.ink-dragdrop',
             'Draggable_1'   : '.ink-draggable',
             'Dropdown_1'    : '.ink-dropdown',
             'Droppable_1.add' : '.ink-droppable',
@@ -63,11 +64,10 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
          * @method run
          * @param {Element} parentEl Root element. The children of this element will be processed by Autoload.
          * @param {Object}  [options] Options object, containing:
-         * @param {Boolean} [options.forceAutoload] Autoload things on elements even if they have `data-autoload="false"`
-         * @param {Boolean} [options.createClose] Whether to create the Ink.UI.Close component. Defaults to `true`.
-         * @param {Boolean} [options.createSmoothScroller] Whether to create the Scroller component. Defaults to `true`.
+         * @param {Boolean} [options.forceAutoload=false] Autoload things on elements even if they have `data-autoload="false"`
+         * @param {Boolean} [options.createClose=false] Whether to create the Ink.UI.Close component.
+         * @param {Boolean} [options.createSmoothScroller=false] Whether to create the Scroller component.
          * @param {Object} [options.selectors=Ink.Autoload.selectors] A hash mapping module names to selectors that match elements to load these modules. For example, `{ 'Modal_1': '.my-specific-modal' }`.
-         * @param {Boolean} [options.waitForDOMLoaded=false] Do nothing until the DOM is loaded. Uses Ink.Dom.Loaded.run();
          * @return {void}
          * @public
          * @sample Autoload_1.html
@@ -76,7 +76,6 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
             options = Ink.extendObj({
                 // The below lines are not required because undefined is falsy anyway..
                 // forceAutoload: false,
-                // waitForDOMLoaded: false,
                 // createClose: false,
                 // createSmoothScroller: false,
                 selectors: Autoload.selectors
@@ -86,13 +85,13 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
                 // `elements` need to be in a closure because requireModules is async.
                 findElements(mod);
             }
-            if (options.createClose !== false) {
+            if (options.createClose) {
                 new Close();
             }
-            if (options.createSmoothScroller !== false) {
+            if (options.createSmoothScroller) {
                 Scroller.init();
             }
-            if (options.createDrawer !== false) {
+            if (options.createDrawer) {
                 if (Selector.matchesSelector(document.body, '.ink-drawer') &&
                         !(Drawer.getInstance && Drawer.getInstance(document.body))) {
                     new Drawer(document.body);
@@ -172,7 +171,8 @@ Ink.createModule('Ink.Autoload', 1, ['Ink.Dom.Selector_1', 'Ink.Util.Array_1', '
         Loaded.run(function () {
             Autoload.run(document, {
                 createSmoothScroller: true,
-                createClose: true
+                createClose: true,
+                createDrawer: true
             });
             Autoload.firstRunDone = true;
         });

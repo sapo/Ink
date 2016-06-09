@@ -11,13 +11,53 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         return div.style.opacity !== 'invalid';
     }(InkElement.create('div', {style: 'opacity: 1'})));
 
-    var vhVwSupported = (function (div) {
-        return div.style.height === '10vh' && div.style.width === '10vw';
-    }(InkElement.create('div', { style: 'height:10vh;width:10vw' })));
+    var vhVwSupported = (function (elem) {
+        // Stolen with pride from modernizr:
+        // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/vhunit.js
+        // and https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/vwunit.js
+        var height = parseInt(window.innerHeight / 2, 10);
+        var compHeight = parseInt((window.getComputedStyle ?
+                                  getComputedStyle(elem, null) :
+                                  elem.currentStyle)['height'], 10);
+        var width = parseInt(window.innerWidth / 2, 10);
+        var compWidth = parseInt((window.getComputedStyle ?
+                                  getComputedStyle(elem, null) :
+                                  elem.currentStyle).width, 10);
+
+        return compHeight === height && compWidth === width;
+    }(InkElement.create('div', { style: 'height:50vh;width:50vw' })));
 
     var flexSupported = (function (div) {
         return div.style.display !== '';
     }(InkElement.create('div', { style: 'display: flex' })));
+
+    var cleanDimension = function (dim) {
+        dim = dim.replace(/^\s+|\s+$/g, '');
+        var hasPercent = dim.indexOf('%') !== -1;
+        var hasPx = dim.indexOf('px') !== -1;
+        return !hasPercent && !hasPx ? dim + '%' :
+            !hasPercent && hasPx ? dim :
+            !hasPx && hasPercent ? dim :
+            dim + 'px';
+    };
+
+    var dimensionOfLayout = function (dimensionList, needleLayout) {
+        var dims = dimensionList.split(/\s+/g);
+        var theDefault;
+        for (var i = 0; i < dims.length; i++) {
+            var _dim = dims[i].split('-');
+            var layout = _dim[0].replace(/^\s+|\s+$/g, '');
+
+            if (layout === needleLayout) {
+                return cleanDimension(_dim[1]);
+            }
+
+            if (layout === 'all') {
+                theDefault = cleanDimension(_dim[1]);
+            }
+        }
+        return theDefault;
+    };
 
     /**
      * @class Ink.UI.Modal
@@ -42,15 +82,6 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
      * @sample Ink_UI_Modal_1.html
      */
 
-    function upName(dimension) {
-        // omg IE
-        var firstCharacter = dimension.match(/^./)[0];
-        return firstCharacter.toUpperCase() + dimension.replace(/^./, '');
-    }
-    function maxName(dimension) {
-        return 'max' + upName(dimension);
-    }
-
     var openModals = [];
 
     function Modal() {
@@ -63,8 +94,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         /**
          * Width, height and markup really optional, as they can be obtained by the element
          */
-        width:        ['String', undefined],
-        height:       ['String', undefined],
+        width:        ['String', '90%'],
+        height:       ['String', '90%'],
 
         /**
          * To add extra classes
@@ -87,7 +118,8 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         onDismiss:    ['Function', undefined],
         closeOnClick: ['Boolean', false],
         closeOnEscape: ['Boolean', true],
-        responsive:    ['Boolean', true]
+        responsive:    ['Boolean', true],
+        preventPageScroll: ['Boolean',false]
     };
 
     Modal.prototype = {
@@ -98,9 +130,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 resize: null
             };
 
-            this._dimensionIsPercentage = {
-                width: ('' + this._options.width).indexOf('%') !== -1,
-                height: ('' + this._options.height).indexOf('%') !== -1
+            this._dimensionIsVariant = {
+                width: ('' + this._options.width).indexOf(' ') !== -1,
+                height: ('' + this._options.height).indexOf(' ') !== -1
             };
 
             this._isOpen = false;
@@ -160,6 +192,49 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
         },
 
+        _dimensionIsPercentage: function () {
+            var dims = this._getDimensions();
+            return {
+                width: ('' + dims.width).indexOf('%') !== -1,
+                height: ('' + dims.height).indexOf('%') !== -1
+            };
+        },
+
+        _getDimensions: function (opt) {
+            opt = opt || {};
+            var dims = {
+                width: this._options.width,
+                height: this._options.height
+            };
+            var currentLayout;
+            if (this._dimensionIsVariant.width || this._dimensionIsVariant.height) {
+                currentLayout = Common.currentLayout();
+            }
+            if (this._dimensionIsVariant.width) {
+                dims.width = dimensionOfLayout(dims.width, currentLayout);
+            }
+            if (this._dimensionIsVariant.height) {
+                dims.height = dimensionOfLayout(dims.height, currentLayout);
+            }
+            if (opt.dynamic) {
+                var isPercentage = this._dimensionIsPercentage();
+                if (!isPercentage.width) {
+                    // TODO maxWidth and maxHeight should be options, not bound to 90%
+                    var maxWidth = InkElement.viewportWidth() * 0.9;
+                    if (parseFloat(dims.width) >= maxWidth) {
+                        dims.width = maxWidth + 'px';
+                    }
+                }
+                if (!isPercentage.height) {
+                    var maxHeight = InkElement.viewportHeight() * 0.9;
+                    if (parseFloat(dims.height) >= maxHeight) {
+                        dims.height = maxHeight + 'px';
+                    }
+                }
+            }
+            return dims;
+        },
+
         /**
          * Responsible for repositioning the modal
          * 
@@ -170,19 +245,22 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             // reposition vertically
             var largerThan90Percent;
 
-            if (vhVwSupported && this._dimensionIsPercentage.height) {
-                this._modalDiv.style.marginTop = (-parseFloat(this._options.height)/2) + 'vh';
-            } else if (vhVwSupported) {
-                largerThan90Percent = parseFloat(this._options.height) > InkElement.viewportHeight() * 0.9;
+            var dimensionIsPercentage = this._dimensionIsPercentage();
+            var dims = this._getDimensions();
 
-                if (largerThan90Percent !== this._heightWasLargerThan90Percent || !largerThan90Percent) {
+            if (vhVwSupported && dimensionIsPercentage.height) {
+                this._modalDiv.style.marginTop = (-parseFloat(dims.height)/2) + 'vh';
+            } else if (vhVwSupported) {
+                largerThan90Percent = parseFloat(dims.height) > InkElement.viewportHeight() * 0.9;
+
+                if (largerThan90Percent !== this._heightWasLargerThan90Percent || !largerThan90Percent || this._dimensionIsVariant.height) {
                     this._heightWasLargerThan90Percent = largerThan90Percent;
 
                     if (largerThan90Percent) {
                         this._modalDiv.style.marginTop = '0';
                         this._modalDiv.style.top = '5vh';
                     } else {
-                        this._modalDiv.style.marginTop = (-parseFloat(this._options.height)/2) + 'px';
+                        this._modalDiv.style.marginTop = (-parseFloat(dims.height)/2) + 'px';
                         this._modalDiv.style.top = '';
                     }
                 }
@@ -191,19 +269,19 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             // reposition horizontally
-            if (vhVwSupported && this._dimensionIsPercentage.width) {
-                this._modalDiv.style.marginLeft = (-parseFloat(this._options.width)/2) + 'vw';
+            if (vhVwSupported && dimensionIsPercentage.width) {
+                this._modalDiv.style.marginLeft = (-parseFloat(dims.width)/2) + 'vw';
             } else if (vhVwSupported) {
-                largerThan90Percent = parseFloat(this._options.width) > InkElement.viewportWidth() * 0.9;
+                largerThan90Percent = parseFloat(dims.width) > InkElement.viewportWidth() * 0.9;
 
-                if (largerThan90Percent !== this._widthWasLargerThan90Percent || !largerThan90Percent) {
+                if (largerThan90Percent !== this._widthWasLargerThan90Percent || !largerThan90Percent || this._dimensionIsVariant.width) {
                     this._widthWasLargerThan90Percent = largerThan90Percent;
 
                     if (largerThan90Percent) {
                         this._modalDiv.style.marginLeft = '0';
                         this._modalDiv.style.left = '5vw';
                     } else {
-                        this._modalDiv.style.marginLeft = (-parseFloat(this._options.width)/2) + 'px';
+                        this._modalDiv.style.marginLeft = (-parseFloat(dims.width)/2) + 'px';
                         this._modalDiv.style.left = '';
                     }
                 }
@@ -219,11 +297,19 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _onResize: function( ){
-            if (!vhVwSupported) {
+            var dimensionsAreVariant = this._dimensionIsVariant.height || this._dimensionIsVariant.width;
+            var dimensionIsPercentage = this._dimensionIsPercentage();
+            var dimensionsArePercentage = !dimensionIsPercentage.height || !dimensionIsPercentage.width;
+
+            if (dimensionsAreVariant) {
+                this._resize();
+            }
+
+            if (!vhVwSupported || dimensionsAreVariant) {
                 this._avoidModalLargerThanScreen();
             }
 
-            if (!vhVwSupported || (!this._dimensionIsPercentage.height || !this._dimensionIsPercentage.width)) {
+            if (!vhVwSupported || dimensionsArePercentage || dimensionsAreVariant) {
                 this._reposition();
             }
 
@@ -240,9 +326,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @private
          */
         _onShadeClick: function(ev) {
+            if (!this._isOpen) { return; }
+
             var tgtEl = Event.element(ev);
 
-            if (tgtEl === this._modalShadow /* TODO rename to this._modalShade */) {
+            if (tgtEl === this._modalShadow && this._options.closeOnClick) {
                 this.dismiss();
             } else if (Css.hasClassName(tgtEl, 'ink-close') || Css.hasClassName(tgtEl, 'ink-dismiss') || 
                 InkElement.findUpwardsBySelector(tgtEl, '.ink-close,.ink-dismiss') ||
@@ -281,9 +369,16 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                     openModals[openModals.length - 1] === this) {
                 this.dismiss();
                 if (!this._isOpen) {
-                    Event.stop(ev);
+                    Event.stopDefault(ev);
                 }
             }
+        },
+
+        _resize: function () {
+            var dims = this._getDimensions();
+
+            this._modalDiv.style.width = dims.width;
+            this._modalDiv.style.height = dims.height;
         },
 
         _resizeContainer: function() {
@@ -311,28 +406,34 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
         },
 
         _avoidModalLargerThanScreen: function () {
+            var dimensionIsPercentage = this._dimensionIsPercentage();
+
             if (!vhVwSupported) {
                 var currentViewport = {
                     height: InkElement.viewportHeight(),
                     width: InkElement.viewportWidth()
                 };
 
+                var dims = this._getDimensions();
+
                 InkArray.forEach(['height', 'width'], Ink.bind(function (dimension) {
                     // Not used for percentage measurements
-                    if (this._dimensionIsPercentage[dimension]) { return; }
+                    if (dimensionIsPercentage[dimension]) { return; }
 
-                    if (parseFloat(this._options[dimension]) > currentViewport[dimension] * 0.9) {
-                        this._modalDiv.style[dimension] = Math.round(currentViewport[dimension] * 0.9) + 'px';
+                    var dim = Math.round(currentViewport[dimension] * 0.9);
+
+                    if (parseFloat(dims[dimension]) > dim) {
+                        this._modalDiv.style[dimension] = dim + 'px';
                     } else {
-                        if (isNaN(parseFloat(this._options[dimension]))) { return; }
-                        this._modalDiv.style[dimension] = parseFloat(this._options[dimension]) + 'px';
+                        if (isNaN(parseFloat(dims[dimension]))) { return; }
+                        this._modalDiv.style[dimension] = parseFloat(dims[dimension]) + 'px';
                     }
                 }, this));
             } else {
-                if (!this._dimensionIsPercentage.width) {
+                if (!dimensionIsPercentage.width) {
                     this._modalDiv.style.maxWidth = '90vw';
                 }
-                if (!this._dimensionIsPercentage.height) {
+                if (!dimensionIsPercentage.height) {
                     this._modalDiv.style.maxHeight = '90vh';
                 }
             }
@@ -356,9 +457,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
 
             if (this.isOpen()) { return false; }
 
-            if( event ){ Event.stop(event); }
-
-            var elem = (document.compatMode === "CSS1Compat") ?  document.documentElement : document.body;
+            if( event ){ Event.stopDefault(event); }
 
             Css.addClassName( this._modalShadow,'ink-shade' );
             this._modalShadow.style.display = this._modalDiv.style.display = 'block';
@@ -385,33 +484,7 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
              * If any size has been user-defined, let's set them as max-width and max-height
              */
 
-            var isPercentage = {
-                width: ('' + this._options.width).indexOf('%') !== -1,
-                height: ('' + this._options.height).indexOf('%') !== -1
-            };
-
-            InkArray.forEach(['width', 'height'], Ink.bind(function (dimension) {
-                if (this._options[dimension] !== undefined) {
-                    this._modalDiv.style[dimension] = this._options[dimension];
-                    if (!isPercentage[dimension]) {
-                        this._modalDiv.style[maxName(dimension)] =
-                            InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
-                    }
-                } else {
-                    this._modalDiv.style[maxName(dimension)] = InkElement['element' + upName(dimension)](this._modalDiv) + 'px';
-                }
-
-                if (isPercentage[dimension] && parseInt(elem['client' + maxName(dimension)], 10) <= parseInt(this._modalDiv.style[dimension], 10) ) {
-                    this._modalDiv.style[dimension] = Math.round(parseInt(elem['client' + maxName(dimension)], 10) * 0.9) + 'px';
-                }
-            }, this));
-
-            this.originalStatus = {
-                viewportHeight:     InkElement.elementHeight(elem),
-                viewportWidth:      InkElement.elementWidth(elem),
-                height:             InkElement.elementHeight(this._modalDiv),
-                width:              InkElement.elementWidth(this._modalDiv)
-            };
+            this._resize();
 
             // /**
             //  * Let's resize, place it:
@@ -430,12 +503,16 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             //  * (because pixel-size-based iframes become larger than the viewport at some point).
             //  **/
             if( this._options.responsive ) {
+                var isPercentage = this._dimensionIsPercentage();
+
                 var needResizeHandler = !(
                     vhVwSupported &&
                     flexSupported &&
                     //Css.getStyle(this._modalDiv, 'display') !== 'block' &&
                     isPercentage.height &&
-                    isPercentage.width );
+                    isPercentage.width &&
+                    !this._dimensionIsVariant.height &&
+                    !this._dimensionIsVariant.width );
 
                 if (needResizeHandler) {
                     this._handlers.resize = Event.throttle(Ink.bind(this._onResize, this), 500);
@@ -444,7 +521,16 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             }
 
             if (this._options.onShow) {
-                this._options.onShow(this);
+                var trigger;
+                if (event) {
+                    trigger = InkElement.findUpwardsBySelector(
+                            Event.element(event),
+                            this._options.trigger);
+                }
+
+                this._options.onShow.call(this, this, {
+                    trigger: trigger
+                });
             }
 
             // // subscribe events
@@ -456,7 +542,11 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             this._isOpen = true;
             openModals.push(this);
 
-            Css.addClassName(document.documentElement, 'ink-modal-open');
+            if (this._options.preventPageScroll === true) {
+                Css.setStyle(document.body,'position: fixed');
+            } 
+            
+            Css.addClassName(document.documentElement, 'ink-modal-open');                
         },
 
         /**
@@ -480,8 +570,10 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
             if (!this._isOpen) { /* Already dismissed. WTF IE. */ return; }
 
             if (this._options.onDismiss) {
-                var ret = this._options.onDismiss(this);
-                if (ret === false) { return; }
+                try {
+                    var ret = this._options.onDismiss(this);
+                    if (ret === false) { return; }
+                } catch(e) { Ink.error(e); }
             }
 
             this._isOpen = false;
@@ -510,7 +602,13 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
                 var htmlEl = document.documentElement;
 
                 // Remove the class from the HTML element.
+
+
+                if (this._options.preventPageScroll === true) {
+                    document.body.style.position = '';
+                } 
                 Css.removeClassName(htmlEl, 'ink-modal-open');
+
             }
         },
 
@@ -554,7 +652,29 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
          * @public
          */
         getContentElement: function() {
-            return this._contentContainer;
+            return this._contentContainer || null;
+        },
+
+        /**
+         * Returns the modal element
+         *
+         * @method getModalElement
+         * @return {Element} Modal element
+         * @public
+         */
+        getModalElement: function () {
+            return this._modalDiv || null;
+        },
+
+        /**
+         * Returns the modal shade (the page-covering dark shade element)
+         *
+         * @method getShadeElement
+         * @return {Element} Modal shade
+         * @public
+         */
+        getShadeElement: function () {
+            return this._modalShadow || null;
         },
 
         /**
@@ -597,6 +717,9 @@ Ink.createModule('Ink.UI.Modal', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.
     };
 
     Common.createUIComponent(Modal, { elementIsOptional: true });
+
+    Modal._vhVwSupported = vhVwSupported;
+    Modal._flexSupported = flexSupported;
 
     return Modal;
 

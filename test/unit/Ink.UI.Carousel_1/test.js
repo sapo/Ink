@@ -87,7 +87,7 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Element
         equal(carousel._setPage.lastCall.args[0], 2);
     }));
 
-    if ('ontouchstart' in document) {
+    if ('ontouchstart' in document && !/PhantomJS/.test(navigator.userAgent)) {
         module('Touch');
 
         testCarousel('You can swipe the carousel sideways to trigger a page change', function (carousel, _, stage) {
@@ -160,5 +160,17 @@ Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Pagination_1', 'Ink.Dom.Element
         carousel.setOption('onChange', onChange);
         carousel.refit();
         ok(onChange.notCalled)
+    });
+
+    module('autoAdvance');
+
+    test('autoAdvance', function () {
+        var carousel = new Carousel(makeContainer(), { autoAdvance: 3000 });
+
+        equal(typeof carousel._autoAdvanceSto, 'number', '_autoAdvanceSto has a setTimeout handle');
+
+        carousel.stopAutoAdvance();
+
+        equal(carousel._autoAdvanceSto, null, '_autoAdvanceSto is now null');
     });
 });

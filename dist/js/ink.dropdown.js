@@ -17,7 +17,7 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
     Dropdown._name = 'Dropdown_1';
 
     Dropdown._optionDefinition = {
-        'target':           ['Element'],
+        'target':           ['Element', null],
         'hoverOpen':        ['Number', null],
         'dismissOnInsideClick': ['Boolean', false],
         'dismissOnOutsideClick': ['Boolean', true],
@@ -35,11 +35,11 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * @constructor
          * @param {Element|String}   trigger                Trigger Element
          * @param {Object}           options                Options Object
-         * @param {Element|String}   options.target         Target of the dropdown action.
-         * @param {Number}          [options.hoverOpen]     The number of milliseconds you need to hover with the mouse before the dropdown opens.
+         * @param {Element|String}  [options.target]        Target of the dropdown action. By default, dropdown will try to find an element with the `.dropdown-menu` class.
+         * @param {Number}          [options.hoverOpen]     The number of seconds you need to hover with the mouse before the dropdown opens.
          * @param {Boolean}         [options.dismissOnInsideClick=false] Whether to dismiss the dropdown when there's a click inside.
          * @param {Boolean}         [options.dismissOnOutsideClick=true] Whether to dismiss the dropdown when there's a click outside.
-         * @param {Number}          [options.dismissAfter]  When the mouse moves away from the dropdown, wait for `dismissAfter` milliseconds and only then dismiss.
+         * @param {Number}          [options.dismissAfter]  When the mouse moves away from the dropdown, wait for `dismissAfter` seconds and only then dismiss.
          * @param {Function}        [options.onInsideClick] Called when there's a click inside the dropdown.
          * @param {Function}        [options.onOutsideClick] Called when there's a click outside the dropdown.
          * @param {Function}        [options.onOpen]        Called when the dropdown is opened.
@@ -48,6 +48,13 @@ Ink.createModule('Ink.UI.Dropdown', '1', ['Ink.UI.Common_1', 'Ink.UI.Toggle_1', 
          * @sample Ink_UI_Dropdown_1.html
          */
         _init: function() {
+            if (this._options.target === null) {
+                this._options.target = Ink.s('.dropdown-menu', this._element);
+                if (!this._options.target) {
+                    throw new Error('Dropdown: You did not specify a "target" option, and cannot find an element with the .dropdown-menu class!');
+                }
+            }
+
             this._toggle = new Toggle(this._element, {
                 target: this._options.target,
                 closeOnInsideClick: null,

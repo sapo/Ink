@@ -89,12 +89,19 @@ Ink.createModule('Ink.UI.Sticky', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink
          * @private
          */
         _isDisabledInLayout: function () {
-            if (!this._options.activateInLayouts) {
+            if(!this._options.activateInLayouts) {
                 return false;
             }
+
             var currentLayout = Common.currentLayout();
-            if (!currentLayout) { return false; }
-            return this._options.activateInLayouts.indexOf(currentLayout) === -1;
+            if (!currentLayout) { return false; };
+            var layouts = this._options.activateInLayouts.split(',');            
+            for ( var i = 0; i < layouts.length; i++ ) {
+              if (layouts[i] === currentLayout) {
+                 return false;
+              }
+            }
+            return true;
         },
 
         /**

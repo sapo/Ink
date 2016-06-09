@@ -5,7 +5,6 @@ table.#{$table-class-name} {
     tr {
         th, td {
             border-bottom: $table-cell-borderColor 1px solid; 
-            background:none
         }
 
         &:last-child {
@@ -120,6 +119,13 @@ table.#{$table-class-name} {
                 td {
                     background: $yellow;
                     color: darken($yellow,80%);
+                }
+            }
+
+            &.grey {
+                td {
+                    background: $grey-10;
+                    color: darken($grey-10,80%);
                 }
             }
         

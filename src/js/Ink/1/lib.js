@@ -9,7 +9,7 @@
     'use strict';
 
     // skip redefinition of Ink core
-    if ('Ink' in window) { return; }
+    if ('Ink' in window && typeof Ink.requireModules === 'function') { return; }
 
 
     // internal data
@@ -47,7 +47,7 @@
         /**
          * @property {String} VERSION
          **/
-        VERSION: '3.1.4',
+        VERSION: '3.1.10',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             var toApply = [];
@@ -537,7 +537,7 @@
          *
          * @method i
          * @param {String} id Element ID
-         * @return {DOMElement|null} The element returned by `document.getElementById(id)` if `id` was a string, and `id` otherwise.
+         * @return {DOMElement} The element returned by `document.getElementById(id)` if `id` was a string, and `id` otherwise.
          * @sample Ink_1_i.html
          */
         i: function(id) {

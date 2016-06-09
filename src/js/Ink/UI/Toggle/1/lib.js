@@ -48,7 +48,7 @@
     Toggle._optionDefinition = {
         target:         ['Elements'],
         triggerEvent:   ['String', 'click'],
-        closeOnClick:   ['Boolean', true],
+        closeOnClick:   ['Boolean', null],
         canToggleAnAncestor: ['Boolean', false],
         isAccordion:    ['Boolean', false],
         initialState:   ['Boolean', null],  // May be true, false, or null to be what it is right now
@@ -71,8 +71,11 @@
 
             this._targets = Common.elsOrSelector(this._options.target);
 
-            // Boolean option handling
-            this._options.closeOnClick = this._options.closeOnClick;
+            // closeOnClick should default to false when isAccordion
+            if (this._options.closeOnClick === null) {
+                this._options.closeOnClick =
+                    (this._options.isAccordion || this._options.canToggleAnAncestor) ? false : true;
+            }
             // Actually a throolean
             if (this._options.initialState === null) {
                 this._options.initialState = Css.hasClassName(this._targets[0], this._options.classNameOn);
@@ -89,7 +92,7 @@
                 this._accordionContainer = InkElement.findUpwardsByClass(
                     this._element, 'accordion');
                 if (!this._accordionContainer) {
-                    Ink.warn('Ink.UI.Toggle_1: This toggle has the isToggle option set to `true`, but is not a descendant of an element with the class "accordion"! Because of this, it won\'t be able to find other toggles in the same accordion and cooperate with them.');
+                    Ink.warn('Ink.UI.Toggle_1: This toggle has the isAccordion option set to `true`, but is not a descendant of an element with the class "accordion"! Because of this, it won\'t be able to find other toggles in the same accordion and cooperate with them.');
                 }
             }
 
@@ -208,8 +211,6 @@
                 return;
             }
 
-            if (InkElement.findUpwardsBySelector(tgtEl, '[data-is-toggle-trigger="true"]')) { return; }
-
             var ancestorOfTargets = InkArray.some(this._targets, function (target) {
                 return InkElement.isAncestorOf(target, tgtEl) || target === tgtEl;
             });
@@ -250,7 +251,7 @@
             }
 
             if (callHandler && typeof this._options.onChangeState === 'function') {
-                var ret = this._options.onChangeState(on);
+                var ret = this._options.onChangeState.call(this, on, { element: this._element });
                 if (ret === false) { return false; } //  Canceled by the event handler
             }
             for (i = 0, len = this._targets.length; i < len; i++) {

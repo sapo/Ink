@@ -6,7 +6,8 @@ html {
 body {
     color: $text-color;
     @include ink-font-stack(sans);
-    line-height: $base-line-height;
+    font-size: inherit;
+    //line-height: $base-line-height;
 }
 
 .fw-100, .fw-light { font-weight: 100; }
@@ -16,7 +17,7 @@ body {
 .fw-700, .fw-bold { font-weight: 700; }
 .fw-900, .fw-black { font-weight: 900; }
 
-.condensed-300, .condensed-thin { font-weight: 200; font-family: $condensed-font-stack; }
+.condensed-300, .condensed-thin { font-weight: 300; font-family: $condensed-font-stack; }
 .condensed-400, .condensed-regular { font-weight: 400; font-family: $condensed-font-stack; }
 .condensed-700, .condensed-bold { font-weight: 700; font-family: $condensed-font-stack; }
 
@@ -35,8 +36,6 @@ body {
 .uppercase { text-transform: uppercase; }
 .lowercase { text-transform: lowercase; }
 .capitalizer { text-transform: capitalize; }
-
-.fa { font-size: 14px; }
 
 a {
     color: $link-color;

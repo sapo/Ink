@@ -166,17 +166,22 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
     module('onChangeState callback');
     bagTest('is called when state changes', function (_, trigger, targets) {
         var i = 0;
+        var args;
+        var that
         var toggle = new Toggle(trigger, {
             target: targets,
             initialState: true,
             triggerEvent: 'my:event',
-            onChangeState: function () { i++; }
+            onChangeState: function () { that = this; args = [].slice.call(arguments); i++; }
         });
         equal(i, 1);  // callback incremented i
+        deepEqual(args, [true, { element: toggle._element }], 'onChangeState called with the new toggle state and an object containing the element')
+        strictEqual(that, toggle, 'onChangeState called with this=toggle')
         toggle.setState(true, true);
-        equal(i, 1);  // callback not called because state didn't change
+        equal(i, 1, 'callback not called because state did not change');  // callback not called because state didn't change
         toggle.setState(false, true);
-        equal(i, 2);  // callback called
+        equal(i, 2, 'callback called because state changed');  // callback called
+        deepEqual(args, [false, { element: toggle._element }], 'onChangeState called with the new toggle state and an object containing the element')
     });
 
     bagTest('returning false cancels toggling', function (_, trigger, targets) {
@@ -204,24 +209,6 @@ Ink.requireModules(['Ink.UI.Toggle_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1', 'In
         ok(!toggle.getState());
     });
 
-    bagTest('doesn\'t close other things', function (bag, trigger, targets) {
-        var toggle = new Toggle(trigger, {
-            target: targets,
-            initialState: true,
-            closeOnClick: true
-        });
-
-        ok(toggle.getState(), 'sanity check -- before fire, toggle1 is open');
-        var bag2 = createBag({ triggerClassName: 'trigger-2', targetClassName: 'targets-2' });
-        var toggle2 = new Toggle(bag2.trigger, {
-            target: bag2.targets,
-            initialState: true,
-            closeOnClick: true
-        });
-        InkEvent.fire(bag2.trigger, 'click');
-        ok(!toggle2.getState(), 'sanity check -- toggle2 should be closed now');
-        ok(toggle.getState(), '... but toggle1 should be still open.');
-    });
     bagTest('can be canceled by the onchangestate callback', function (bag, trigger, targets) {
         var doCancel = false;
         var toggle = new Toggle(trigger, {

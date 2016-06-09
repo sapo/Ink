@@ -441,7 +441,7 @@ Ink.createModule('Ink.UI.Upload', '1', [
 
 
         _dropEventHandler: function(ev) {
-            Event.stop(ev);
+            Event.stopDefault(ev);
 
             this.publish('DropComplete', ev.dataTransfer);
 

@@ -28,10 +28,10 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
      * @param {String}              [options.active]                ID of the tab to activate on creation if the window hash is not already a tab ID.
      * @param {Function}            [options.onBeforeChange]        Callback to be executed before changing tabs.
      * @param {Function}            [options.onChange]              Callback to be executed after changing tabs.
-     * @param {Boolean}             [options.triggerEventsOnLoad=true] Call the above callbacks after this component is created.
      * 
      * @param {String}              [options.menuSelector='.tabs-nav'] Selector to find your tab links.
      * @param {String}              [options.contentSelector='.tabs-content'] Selector to find your tab content panes.
+     * @param {Boolean}             [options.triggerEventsOnLoad=true] Call the above callbacks after this component is created.
      *
      * @sample Ink_UI_Tabs_1.html
      */
@@ -107,7 +107,9 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
                                  Selector.select('a', this._menu)[0];
 
             if (activeMenuLink) {
+                this._firstTime = true;
                 this._changeTab(activeMenuLink, this._options.triggerEventsOnLoad);
+                this._firstTime = false;
             }
         },
 
@@ -131,7 +133,7 @@ Ink.createModule('Ink.UI.Tabs', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.D
             // going to be shown below). That is intentional. If the content is
             // shown and location.hash changes, scroll jumps to that pane, and
             // we do not want that.
-            if (window.location.hash !== href && !this._options.preventUrlChange) {
+            if (window.location.hash !== href && !this._options.preventUrlChange && !this._firstTime) {
                 window.location.hash = href;
             }
 

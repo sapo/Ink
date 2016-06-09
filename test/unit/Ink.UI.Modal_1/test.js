@@ -1,4 +1,4 @@
-Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], function (Modal, InkElement, Css) {
+Ink.requireModules(['Ink.UI.Common_1', 'Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], function (Common, Modal, InkElement, Css) {
     function makeContainer(opt) {
         var cont = document.body.appendChild(InkElement.create('div', {
             className: 'ink-shade fade'
@@ -23,13 +23,9 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
         return cont;
     }
 
-    var vhVwSupported = (function (div) {
-        return div.style.height === '10vh' && div.style.width === '10vw';
-    }(InkElement.create('div', { style: 'height:10vh;width:10vw' })));
+    var vhVwSupported = Modal._vhVwSupported;
 
-    var flexSupported = (function (div) {
-        return div.style.display !== '';
-    }(InkElement.create('div', { style: 'display: flex' })));
+    var flexSupported = Modal._flexSupported;
 
     function modalTest(name, testBack, options) {
         test(name, function () {
@@ -78,21 +74,30 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
             ok(!modal.isOpen(), 'clicking the shade causes it to close');
             start();
         });
-    }, { autoDisplay: true });
+    }, { autoDisplay: true, closeOnClick: true });
+
+    modalTest('regression: clicking the shade with closeOnClick: false does NOT make the modal close', function (modal, els) {
+        stop();
+        Syn.click({}, modal._modalShadow, function () {
+            ok(modal.isOpen(), 'did not close! lel');
+            modal.dismiss();
+            start();
+        });
+    }, { autoDisplay: true, closeOnClick: false });
 
     modalTest('A new modal has style.height, style.width set to its height, width options\' values', function (modal, els) {
         equal(modal._modalDiv.style.height, '100px');
-        equal(modal._modalDiv.style.width, '90%');
+        equal(modal._modalDiv.style.width, '91%');
         modal.dismiss();
-    }, { height: '100px', width: '90%', autoDisplay: true });
+    }, { height: '100px', width: '91%', autoDisplay: true });
 
     modalTest('_reposition, called on construction and resize, repositions the modal by setting the marginTop and marginLeft style properties to negative values', function (modal) {
         sinon.stub(InkElement, 'elementHeight').returns(200);
         sinon.stub(InkElement, 'elementWidth').returns(100);
         modal._reposition();
         if (vhVwSupported) {
-            ok(!modal._element.style.marginTop, 'If there\'s vh/vw support, _reposition won\'t touch marginTop');
-            ok(!modal._element.style.marginLeft, 'If there\'s vh/vw support, _reposition won\'t touch marginLeft');
+            equal(modal._element.style.marginTop, '-45vh');
+            equal(modal._element.style.marginLeft, '-45vw');
         } else {
             equal(modal._element.style.marginTop, '-100px');
             equal(modal._element.style.marginLeft, '-50px');
@@ -100,7 +105,7 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
         modal.dismiss();
         InkElement.elementHeight.restore();
         InkElement.elementWidth.restore();
-    });
+    }, { height: '90%', width: '90%' });
     modalTest('_reposition, called on construction and resize, repositions the modal by setting the marginTop and marginLeft style properties to negative values, part 2', function (modal) {
         sinon.stub(InkElement, 'elementHeight').returns(200);
         sinon.stub(InkElement, 'elementWidth').returns(100);
@@ -162,6 +167,49 @@ Ink.requireModules(['Ink.UI.Modal_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], fun
             '_onResize() calls modal._avoidModalLargerThanScreen() once if no vh/vw supported')
 
         modal.dismiss();
+    });
+
+    test('variant dimensions', function () {
+        var els = makeContainer();
+        try {
+            var modal = new Modal(Ink.s('.ink-modal', els), { autoDisplay: true, height: 'large-79 all-20', width: '80%' });
+        } catch(e) {
+            ok(false, 'creating the modal yielded an exception')
+        }
+
+        expect(2);
+
+        sinon.stub(Common, 'currentLayout')
+
+        Common.currentLayout.returns('large')
+
+        deepEqual(modal._getDimensions(), {
+            width: '80%',
+            height: '79%'
+        });
+
+        Common.currentLayout.returns('tiny')
+
+        deepEqual(modal._getDimensions(), {
+            width: '80%',
+            height: '20%'
+        });
+
+        Common.currentLayout.restore();
+
+        modal.dismiss();
+    });
+
+    test('Regression: When onDismiss throws an error, Modal should still be dismissed.', function() {
+        var els = makeContainer();
+
+        var modal = new Modal(Ink.s('.ink-modal', els), { autoDisplay: false, onDismiss: function() { throw new Error('I\'m a poorly written onDismiss!') } });
+
+        modal.open();
+
+        modal.dismiss();
+
+        ok(!Css.hasClassName(Ink.s('.ink-shade', els), 'visible'))
     });
 
     if (!vhVwSupported) {

@@ -94,8 +94,15 @@ Ink.createModule('Ink.UI.SortableList', '1', ['Ink.UI.Common_1','Ink.Dom.Css_1',
          */
         _onDown: function(ev) {
             if (this._isMoving || this._placeholder) { return; }
-            if(this._options.handleSelector && !Selector.matchesSelector(ev.target, this._options.handleSelector)) { return; }
             var tgtEl = ev.currentTarget;
+            if(this._options.handleSelector &&
+                    Ink.s(this._options.handleSelector, this._currentTarget)) {
+                var handle = Element.findUpwardsBySelector(ev.target, this._options.handleSelector);
+
+                if (!(handle && (Element.isAncestorOf(tgtEl, handle) || tgtEl === handle))) {
+                    return;
+                }
+            }
             this._isMoving = tgtEl;
             this._placeholder = tgtEl.cloneNode(true);
             this._movePlaceholder(tgtEl);

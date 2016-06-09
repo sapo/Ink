@@ -4,7 +4,7 @@
  * @version 1
  */
 
-Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Dom.Browser_1'], function(Common, Event, Css, InkElement, Selector, InkArray, InkDate ) {
+Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1','Ink.Util.Array_1','Ink.Util.Date_1', 'Ink.Util.I18n_1'], function(Common, Event, Css, InkElement, Selector, InkArray, InkDate, I18n ) {
     'use strict';
 
     // Clamp a number into a min/max limit
@@ -20,6 +20,19 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         return dateishFromYMD(+split[0], +split[1] - 1, +split[2]);
     }
 
+    function keys(obj) {
+        if (Object.keys) {
+            return Object.keys(obj);
+        }
+        var ret = [];
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                ret.push(key);
+            }
+        }
+        return ret;
+    }
+
     function dateishFromYMD(year, month, day) {
         return {_year: year, _month: month, _day: day};
     }
@@ -28,6 +41,75 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         return {_year: date.getFullYear(), _month: date.getMonth(), _day: date.getDate()};
     }
 
+    function getDecade(year) {
+        return Math.floor(year / 10) * 10;  // Round to first place
+    }
+
+    var datePickerI18n = new I18n({
+        pt_PT: {
+            'datepicker.clean':       'Limpar',
+            'datepicker.close':       'Fechar',
+            'datepicker.format':      'dd-mm-yyyy',
+            'datepicker.of':          ' de ',
+            'datepicker.next_button': '»',
+            'datepicker.prev_button': '«',
+            'datepicker.months': {
+                 1:'Janeiro',
+                 2:'Fevereiro',
+                 3:'Março',
+                 4:'Abril',
+                 5:'Maio',
+                 6:'Junho',
+                 7:'Julho',
+                 8:'Agosto',
+                 9:'Setembro',
+                10:'Outubro',
+                11:'Novembro',
+                12:'Dezembro'
+            },
+            'datepicker.week_days': {
+                0:'Domingo',
+                1:'Segunda-feira',
+                2:'Terça-feira',
+                3:'Quarta-feira',
+                4:'Quinta-feira',
+                5:'Sexta-feira',
+                6:'Sábado'
+            }
+        },
+        en_US: {
+            'datepicker.clean':       'Clear',
+            'datepicker.close':       'Close',
+            'datepicker.format':      'dd-mm-yyyy',
+            'datepicker.of':          ' of ',
+            'datepicker.next_button': '»',
+            'datepicker.prev_button': '«',
+            'datepicker.months': {
+                 1:'January',
+                 2:'February',
+                 3:'March',
+                 4:'April',
+                 5:'May',
+                 6:'June',
+                 7:'July',
+                 8:'August',
+                 9:'September',
+                10:'October',
+                11:'November',
+                12:'December'
+            },
+            'datepicker.week_days': {
+                0:'Sunday',
+                1:'Monday',
+                2:'Tuesday',
+                3:'Wednesday',
+                4:'Thursday',
+                5:'Friday',
+                6:'Saturday'
+            }
+        }
+    }, 'en_US');
+
     /**
      * @class Ink.UI.DatePicker
      * @constructor
@@ -35,9 +117,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      *
      * @param {String|Element}      selector                    Datepicker element
      * @param {Object}              [options]                   Options
+     * @param {String}              [options.lang]              Set the language of the DatePicker, to show month names, day names, etc. Internally this results in changing our Ink.Util.I18n instance. pt_PT and en_US are available, but using getI18n().append({ lang_CODE: {...} }) you can create your own language.
      * @param {Boolean}             [options.autoOpen]          Flag to automatically open the datepicker.
-     * @param {String}              [options.cleanText]         Text for the clean button. Defaults to 'Clear'.
-     * @param {String}              [options.closeText]         Text for the close button. Defaults to 'Close'.
      * @param {String}              [options.cssClass]          CSS class to be applied on the datepicker
      * @param {String|Element}      [options.pickerField]       (if not using in an input[type="text"]) Element which displays the DatePicker when clicked. Defaults to an "open" link.
      * @param {String}              [options.dateRange]         Enforce limits to year, month and day for the Date, ex: '1990-08-25:2020-11'
@@ -45,16 +126,13 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {String|Element}      [options.dayField]          (if using options.displayInSelect) `select` field with days.
      * @param {String|Element}      [options.monthField]        (if using options.displayInSelect) `select` field with months.
      * @param {String|Element}      [options.yearField]         (if using options.displayInSelect) `select` field with years.
+     * @param {Boolean}             [options.createSelectOptions] (if using options.displayInSelect) create the `option` elements with months, days, and years. Otherwise, datepicker trusts you to create them yourself.
      * @param {String}              [options.format]            Date format string
-     * @param {Object}              [options.month]             Hash of month names. Defaults to english month names. January is 1.
-     * @param {String}              [options.nextLinkText]      Text for the previous button. Defaults to '«'.
-     * @param {String}              [options.ofText]            Text to show between month and year. Defaults to ' of '.
      * @param {Boolean}             [options.onFocus]           If the datepicker should open when the target element is focused. Defaults to true.
      * @param {Function}            [options.onMonthSelected]   Callback to execute when the month is selected.
      * @param {Function}            [options.onSetDate]         Callback to execute when the date is set.
      * @param {Function}            [options.onYearSelected]    Callback to execute when the year is selected.
      * @param {String}              [options.position]          Position for the datepicker. Either 'right' or 'bottom'. Defaults to 'right'.
-     * @param {String}              [options.prevLinkText]      Text for the previous button. Defaults to '«'.
      * @param {Boolean}             [options.showClean]         If the clean button should be visible. Defaults to true.
      * @param {Boolean}             [options.showClose]         If the close button should be visible. Defaults to true.
      * @param {Boolean}             [options.shy]               If the datepicker should hide automatically when the user clicks outside. Defaults to true.
@@ -65,8 +143,14 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
      * @param {Function}            [options.validDayFn]        Callback to execute when 'rendering' the day (in the month view)
      * @param {Function}            [options.nextValidDateFn]   Function to calculate the next valid date, given the current. Useful when there's invalid dates or time frames.
      * @param {Function}            [options.prevValidDateFn]   Function to calculate the previous valid date, given the current. Useful when there's invalid dates or time frames.
-     * @param {Object}              [options.wDay]              Hash of week day names. Sunday is 0. Defaults to { 0:'Sunday', 1:'Monday', etc...
      * @param {String}              [options.yearRange]         Enforce limits to year for the Date, ex: '1990:2020' (deprecated)
+     * @param {Object}              [options.month]             (Deprecated. use options.lang or i18n instead) Hash of month names. Defaults to english month names. January is 1.
+     * @param {Object}              [options.wDay]              (Deprecated. use options.lang or i18n instead) Hash of week day names. Sunday is 0. Defaults to { 0:'Sunday', 1:'Monday', etc...
+     * @param {String}              [options.nextLinkText]      (Deprecated. use options.lang or i18n instead) Text for the previous button. Defaults to '»'.
+     * @param {String}              [options.prevLinkText]      (Deprecated. use options.lang or i18n instead) Text for the previous button. Defaults to '«'.
+     * @param {String}              [options.ofText]            (Deprecated. use options.lang or i18n instead) Text to show between month and year. Defaults to ' of '.
+     * @param {String}              [options.cleanText]         (Deprecated. use options.lang or i18n instead) Text for the clean button. Defaults to 'Clear'.
+     * @param {String}              [options.closeText]         (Deprecated. use options.lang or i18n instead) Text for the close button. Defaults to 'Close'.
      *
      * @sample Ink_UI_DatePicker_1.html
      */
@@ -78,8 +162,6 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
     DatePicker._optionDefinition = {
         autoOpen:        ['Boolean', false],
-        cleanText:       ['String', 'Clear'],
-        closeText:       ['String', 'Close'],
         pickerField:     ['Element', null],
         containerElement:['Element', null],
         cssClass:        ['String', 'ink-calendar bottom'],
@@ -90,16 +172,14 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         dayField:        ['Element', null],
         monthField:      ['Element', null],
         yearField:       ['Element', null],
+        createSelectOptions: ['Boolean', false],
 
         format:          ['String', 'yyyy-mm-dd'],
-        nextLinkText:    ['String', '»'],
-        ofText:          ['String', ' of '],
         onFocus:         ['Boolean', true],
         onMonthSelected: ['Function', null],
         onSetDate:       ['Function', null],
         onYearSelected:  ['Function', null],
         position:        ['String', 'right'],
-        prevLinkText:    ['String', '«'],
         showClean:       ['Boolean', true],
         showClose:       ['Boolean', true],
         shy:             ['Boolean', true],
@@ -114,30 +194,17 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         prevValidDateFn: ['Function', null],
         yearRange:       ['String', null],
 
-        // Text
-        month: ['Object', {
-             1:'January',
-             2:'February',
-             3:'March',
-             4:'April',
-             5:'May',
-             6:'June',
-             7:'July',
-             8:'August',
-             9:'September',
-            10:'October',
-            11:'November',
-            12:'December'
-        }],
-        wDay: ['Object', {
-            0:'Sunday',
-            1:'Monday',
-            2:'Tuesday',
-            3:'Wednesday',
-            4:'Thursday',
-            5:'Friday',
-            6:'Saturday'
-        }]
+        // I18n
+        lang:            ['String', null],
+
+        // Old I18n
+        month:       ['Object', null],
+        wDay:        ['Object', null],
+        nextLinkText:['String', null],
+        prevLinkText:['String', null],
+        ofText:      ['String', null],
+        cleanText:   ['String', null],
+        closeText:   ['String', null]
     };
 
     DatePicker.prototype = {
@@ -147,7 +214,37 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @method _init
          * @private
          */
-        _init: function(){
+        _init: function() {
+            this.i18n = datePickerI18n.clone();
+
+            if (this._options.lang) {
+                this.i18n.lang(this._options.lang);
+            }
+
+            // Convert any legacy i18n options passed into a nice i18n object
+            var lang = this._options.lang || datePickerI18n.lang();
+            var dict = {};
+            dict[lang] = {};
+
+            if (this._options.month) {
+                dict[lang]['datepicker.months'] = this._options.month; }
+            if (this._options.wDay) {
+                dict[lang]['datepicker.week_days'] = this._options.wDay; }
+            if (this._options.nextLinkText) {
+                dict[lang]['datepicker.next_button'] = this._options.nextLinkText; }
+            if (this._options.prevLinkText) {
+                dict[lang]['datepicker.prev_button'] = this._options.prevLinkText; }
+            if (this._options.ofText) {
+                dict[lang]['datepicker.of'] = this._options.ofText; }
+            if (this._options.cleanText) {
+                dict[lang]['datepicker.clean'] = this._options.cleanText; }
+            if (this._options.closeText) {
+                dict[lang]['datepicker.close'] = this._options.closeText; }
+
+            if (keys(dict[lang]).length) {
+                this.i18n.append(dict);
+            }
+
             this._options.format = this._dateParsers[ this._options.format ] || this._options.format;
 
             this._hoverPicker = false;
@@ -167,6 +264,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             if (this._options.startWeekDay < 0 || this._options.startWeekDay > 6) {
                 Ink.warn('Ink.UI.DatePicker_1: option "startWeekDay" must be between 0 (sunday) and 6 (saturday)');
                 this._options.startWeekDay = clamp(this._options.startWeekDay, 0, 6);
+            }
+
+            if (this._options.displayInSelect && this._options.createSelectOptions) {
+                this._createSelectOptions();
             }
 
             Ink.extendObj(this._options,this._lang || {});
@@ -208,7 +309,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthPrev.appendChild(InkElement.create('a', {
                 href: '#prev',
                 className: 'change_month_prev',
-                setHTML: this._options.prevLinkText
+                setHTML: this.i18n.text('datepicker.prev_button')
             }));
 
             this._monthNext = document.createElement('div');
@@ -216,7 +317,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthNext.appendChild(InkElement.create('a', {
                 href: '#next',
                 className: 'change_month_next',
-                setHTML: this._options.nextLinkText
+                setHTML: this.i18n.text('datepicker.next_button')
             }));
 
             calendarTop.appendChild(this._monthPrev);
@@ -257,12 +358,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._monthChanger = InkElement.create('a', {
                 href: '#monthchanger',
                 className: 'ink-calendar-link-month',
-                setTextContent: this._options.month[this._month + 1]
+                setTextContent: this.i18n.getKey('datepicker.months')[this._month + 1]
             });
 
             this._ofText = InkElement.create('span', {
                 className: 'ink-calendar-of-text',
-                setHTML: this._options.ofText
+                setTextContent: this.i18n.text('datepicker.of')
             });
 
             this._yearChanger = InkElement.create('a', {
@@ -295,6 +396,10 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._updateDate( );
                 this._showDefaultView( );
                 this.setDate( );
+                if(this._options.onSetDate) {
+                    // calling onSetDate because the user selected something
+                    this._options.onSetDate( this , { date : this.getDate() } );
+                }
                 if ( !this._inline && !this._hoverPicker ) {
                     this._hide(true);
                 }
@@ -318,7 +423,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var opener = this._picker || this._element;
 
             Event.observe(opener, 'click', Ink.bindEvent(function(e){
-                Event.stop(e);
+                Event.stopDefault(e);
                 this.show();
             },this));
 
@@ -345,11 +450,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                         this._options.monthField,
                         this._options.yearField,
                         this._picker,
+                        this._containerObject,
                         this._element
                     ];
 
                     for (var i = 0, len = cannotBe.length; i < len; i++) {
-                        if (cannotBe[i] && InkElement.descendantOf(cannotBe[i], target)) {
+                        if (cannotBe[i] && (InkElement.descendantOf(cannotBe[i], target) || cannotBe[i] === target)) {
                             return;
                         }
                     }
@@ -388,7 +494,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var liMonth = document.createElement('li');
             liMonth.appendChild(InkElement.create('a', {
                 'data-cal-month': mon,
-                setTextContent: this._options.month[mon].substring(0, 3)
+                setTextContent: this.i18n.getKey('datepicker.months')[mon].substring(0, 3)
             }));
             return liMonth;
         },
@@ -426,13 +532,13 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             if(this._options.showClean){
                 this._superTopBar.appendChild(InkElement.create('a', {
                     className: 'clean',
-                    setHTML: this._options.cleanText
+                    setHTML: this.i18n.text('datepicker.clean')
                 }));
             }
             if(this._options.showClose){
                 this._superTopBar.appendChild(InkElement.create('a', {
                     className: 'close',
-                    setHTML: this._options.closeText
+                    setHTML: this.i18n.text('datepicker.close')
                 }));
             }
             this._containerObject.appendChild(this._superTopBar);
@@ -440,12 +546,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
 
         _listenToContainerObjectEvents: function () {
             Event.observe(this._containerObject, 'mouseover' ,Ink.bindEvent(function(e){
-                Event.stop( e );
+                Event.stopDefault( e );
                 this._hoverPicker = true;
             },this));
 
             Event.observe(this._containerObject, 'mouseout', Ink.bindEvent(function(e){
-                Event.stop( e );
+                Event.stopDefault( e );
                 this._hoverPicker = false;
             },this));
 
@@ -460,7 +566,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 return null;
             }
 
-            Event.stop(e);
+            Event.stopDefault(e);
 
             // Relative changers
             this._onRelativeChangerClick(elem);
@@ -514,8 +620,12 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             var elemData = InkElement.data(elem);
 
             if( Number(elemData.calDay) ){
-                this.setDate(new Date(this._year, this._month, elemData.calDay));
-                this._hide();
+                this.setDate(new Date(this._year, this._month, elemData.calDay), elem);
+                if (this._options.shy) {
+                    this._hide();
+                } else {
+                    this._updateCal();
+                }
             } else if( Number(elemData.calMonth) ) {
                 this._month = Number(elemData.calMonth) - 1;
                 this._showDefaultView();
@@ -701,6 +811,38 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             return 0;
         },
 
+        _createSelectOptions: function () {
+            var dayField = this._options.dayField;
+            var monthField = this._options.monthField;
+            var yearField = this._options.yearField;
+
+            InkElement.setHTML(monthField, '');
+            InkElement.setHTML(yearField, '');
+
+            InkElement.fillSelect(monthField, InkArray.map([
+                'Janeiro', 'Fevereiro', 'Março', 'Abril',
+                'Maio', 'Junho', 'Julho', 'Agosto',
+                'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+            ], function (monthName, i) { return [ i + 1, monthName ]; }), true);
+
+            InkElement.fillSelect(yearField, InkArray.range(1900, 2000), true);
+
+            function updateDays() {
+                var daysInMonth =
+                    new Date(+yearField.value,
+                        monthField.value - 1 /* because JS months are zero-based */ + 1 /* because we want the next month */,
+                        0 /* days are 1-based so if we choose 0 we get the last day of the previous month */
+                    ).getDate();
+                InkElement.setHTML(dayField, '');
+                InkElement.fillSelect(dayField, InkArray.range(1, daysInMonth + 1), true);
+            }
+
+            // create event on selects to add or remove options depending on selection
+            Event.observeMulti([monthField, yearField], 'change', updateDays);
+
+            updateDays();
+        },
+
         /**
          * Sets the markup in the default view mode (showing the days).
          * Also disables the previous and next buttons in case they don't meet the range requirements.
@@ -763,8 +905,8 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @private
          */
         _updateDescription: function(){
-            InkElement.setTextContent(this._monthChanger, this._options.month[this._month + 1]);
-            InkElement.setTextContent(this._ofText, this._options.ofText);
+            InkElement.setTextContent(this._monthChanger, this.i18n.getKey('datepicker.months')[this._month + 1]);
+            InkElement.setTextContent(this._ofText, this.i18n.text('datepicker.of'));
             InkElement.setTextContent(this._yearChanger, this._year);
         },
 
@@ -790,7 +932,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 prevYearLi.appendChild(InkElement.create('a', {
                     href: '#year_prev',
                     className: 'change_year_prev',
-                    setHTML: this._options.prevLinkText
+                    setHTML: this.i18n.text('datepicker.prev_button')
                 }));
 
                 yearUl.appendChild(prevYearLi);
@@ -815,7 +957,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 nextYearLi.appendChild(InkElement.create('a', {
                     href: '#year_next',
                     className: 'change_year_next',
-                    setHTML: this._options.nextLinkText
+                    setHTML: this.i18n.text('datepicker.next_button')
                 }));
 
                 yearUl.appendChild(nextYearLi);
@@ -981,7 +1123,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
          * @return {void}
          * @public
          */
-        setDate: function( dateString ) {
+        setDate: function( dateString , objClicked) {
             if (dateString && typeof dateString.getDate === 'function') {
                 dateString = [ dateString.getFullYear(),
                     dateString.getMonth() + 1, dateString.getDate() ].join('-');
@@ -994,7 +1136,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
                 this._day   = +auxDate[ 2 ];
             }
 
-            this._setDate( );
+            this._setDate( objClicked );
         },
 
         /**
@@ -1022,6 +1164,11 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             if (objClicked) {
                 var data = InkElement.data(objClicked);
                 this._day = (+data.calDay) || this._day;
+
+                if(this._options.onSetDate) {
+                    // calling onSetDate because the user selected something
+                    this._options.onSetDate( this , { date : this.getDate() } );
+                }
             }
 
             var dt = this._fitDateToRange(this);
@@ -1031,15 +1178,14 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             this._day = dt._day;
 
             if(!this._options.displayInSelect){
-                this._element.value = this._writeDateInFormat();
+                var formattedDate = this._writeDateInFormat();
+                if (formattedDate !== this._element.value) {
+                    this._element.value = formattedDate;
+                }
             } else {
                 this._options.dayField.value   = this._day;
                 this._options.monthField.value = this._month + 1;
                 this._options.yearField.value  = this._year;
-            }
-
-            if(this._options.onSetDate) {
-                this._options.onSetDate( this , { date : this.getDate() } );
             }
         },
 
@@ -1202,14 +1348,14 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
         _getPrevDecade: function (date) {
             date = date || { _year: this._year, _month: this._month, _day: this._day };
             var decade = this._getCurrentDecade(date);
-            if (decade - 10 < this._min._year) { return null; }
+            if (getDecade(decade - 10) < getDecade(this._min._year)) { return null; }
             return decade - 10;
         },
 
         /** Returns the decade given a date or year*/
         _getCurrentDecade: function (year) {
             year = year ? (year._year || year) : this._year;
-            return Math.floor(year / 10) * 10;  // Round to first place
+            return getDecade(this._year);
         },
 
         _callUserCallbackBase: function (cb, date) {
@@ -1362,7 +1508,7 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             for(var i=0; i<7; i++){
                 wDay = (startWeekDay + i) % 7;
                 header.appendChild(InkElement.create('li', {
-                    setTextContent: this._options.wDay[wDay].substring(0, 1)
+                    setTextContent: this.i18n.getKey('datepicker.week_days')[wDay].substring(0, 1)
                 }));
             }
 
@@ -1404,21 +1550,53 @@ Ink.createModule('Ink.UI.DatePicker', '1', ['Ink.UI.Common_1','Ink.Dom.Event_1',
             }
         },
 
-        /*
-         * // TODO implement this
-         * Prototype's method to allow the 'i18n files' to change all objects' language at once.
-         * @param {Object} options                  Object with the texts' configuration.
-         * @param {String} options.closeText        Text of the close anchor
-         * @param {String} options.cleanText        Text of the clean text anchor
-         * @param {String} options.prevLinkText     "Previous" link's text
-         * @param {String} options.nextLinkText     "Next" link's text
-         * @param {String} options.ofText           The text "of", present in 'May of 2013'
-         * @param {Object} options.month            An object with keys from 1 to 12 for the full months' names
-         * @param {Object} options.wDay             An object with keys from 0 to 6 for the full weekdays' names
+        /**
+         * Set my I18n instance with the calendar text
+         * @method setI18n
+         * @param {Ink.Util.I18n_1} i18n I18n instance
+         **/
+        setI18n: function (i18n) {
+            if (i18n.clone) {
+                // New function, added safety
+                i18n = i18n.clone();
+            }
+            this.i18n = i18n;
+        },
+
+        /**
+         * Get my I18n instance with the calendar text
+         * @method getI18n
+         * @return {Ink.Util.I18n_1} I18n instance
+         **/
+        getI18n: function () {
+            return this.i18n || datePickerI18n;
+        },
+
+        /**
+         * Set the language to the given language code
+         * If we don't have an i18n instance, create one which is a copy of the global one.
+         * @method setLanguage
+         * @param {String} language Language code (ex: en_US, pt_PT)
+         * @return {void}
          * @public
-         */
-        lang: function( options ){
-            this._lang = options;
+         **/
+        setLanguage: function (language) {
+            if (!this.i18n) {
+                this.setI18n(datePickerI18n);
+            }
+            this.i18n.lang(language);
+        },
+
+        /**
+         * Gets the language code string (pt_PT or en_US for example) currently in use.
+         * May be global
+         *
+         * @method getLanguage
+         * @public
+         * @return {String} Language code.
+         **/
+        getLanguage: function () {
+            return this.i18n ? this.i18n.lang() : datePickerI18n.lang();
         },
 
         /**

@@ -1,4 +1,4 @@
-Ink.requireModules(['Ink.UI.DatePicker_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Util.Array_1'], function (DatePicker, Css, InkEvent, InkElement, InkArray) {
+Ink.requireModules(['Ink.UI.DatePicker_1', 'Ink.Dom.Css_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Util.Array_1', 'Ink.Util.I18n_1'], function (DatePicker, Css, InkEvent, InkElement, InkArray, I18n) {
 
 var body = document.body;
 var dtElm;
@@ -11,6 +11,7 @@ function mkDatePicker(options) {
         startDate: '2000-10-10',
         format: 'dd/mm/yyyy'
     }, options));
+    return dt;
 }
 
 module('main', {
@@ -43,6 +44,100 @@ test('setDate', function () {
     equal(dt._year, 2000);
     equal(dt._month + 1, 1);
     equal(dt._day, 1);
+});
+
+test('onSetDate', function () {
+    var onSetDate = sinon.spy();
+    var dt = mkDatePicker({ onSetDate: onSetDate });
+    ok(onSetDate.notCalled, 'onSetDate won\'t be called until the user selects a date');
+
+    dt.setDate('2001-10-9');
+
+    ok(onSetDate.notCalled, 'onSetDate won\'t be called when the API sets the date');
+
+    dt._year = 2001;
+    dt._month = 5 + 1;
+    dt._setDate({ dataset: { calDay: 10 } });
+
+    ok(onSetDate.calledOnce, 'onSetDate called when the user clicks an element which chooses a date');
+})
+
+test('regression: onSetDate called on click', function () {
+    var onSetDate = sinon.spy();
+    var dt = mkDatePicker({ onSetDate: onSetDate });
+
+    dt.show()
+
+    InkEvent.fire(
+        Ink.s('[data-cal-day="6"]', dt._containerObject),
+        'click')
+
+    ok(onSetDate.calledOnce)
+})
+
+test('i18n', function () {
+    var i18n = new I18n({
+        tt_TT: {  // Test lang
+            'datepicker.clean': 'CLEEAN',
+            'datepicker.close': 'CLOOSE',
+            'datepicker.prev_button': 'PREEV',
+            'datepicker.next_button': 'NEEXT',
+            'datepicker.of': 'OOF',
+            'datepicker.week_days': {
+                0: 'X',
+                1: 'M',
+                2: 'T',
+                3: 'W',
+                4: 'T',
+                5: '%',
+                6: '_'
+            },
+            'datepicker.months': {
+                1: 'T',
+                2: 'T',
+                3: 'T',
+                4: 'T',
+                5: 'T',
+                6: 'T',
+                7: 'T',
+                8: 'T',
+                9: 'T',
+                10: 'T',
+                11: 'T',
+                12: 'T'
+            }
+        }
+    }, 'tt_TT');
+
+    dt.setI18n(i18n);
+    dt._render();
+    dt.setLanguage('tt_TT');
+    dt._renderSuperTopBar();
+
+    ok(/CLEEAN/.test(dt._superTopBar.outerHTML), 'making sure i18n is being used on the top bar');
+    ok(/CLOOSE/.test(dt._superTopBar.outerHTML), 'making sure i18n is being used on the top bar');
+
+    dt._showYearSelector();
+
+    ok(/PREEV/.test(dt._yearSelector.outerHTML), 'making sure i18n is being used on the previous button');
+    ok(/NEEXT/.test(dt._yearSelector.outerHTML), 'making sure i18n is being used on the next button');
+
+    ok(/OOF/.test(dt._monthDescContainer.outerHTML), 'making sure i18n is being used for the of text');
+
+    ok(/X/.test(dt._getMonthCalendarHeader(0).outerHTML), 'making sure i18n is being used for the week day names');
+
+    dt._showMonthSelector();
+    ok(/T/.test(dt._monthSelector.outerHTML), 'making sure i18n is being used for the month names');
+});
+
+test('_options.lang', function() {
+    mkDatePicker({
+        lang: 'pt_PT'
+    });
+
+    equal(dt._options.lang, 'pt_PT')
+    equal(dt.getLanguage(), 'pt_PT');
+    equal(dt.getI18n().lang(), 'pt_PT', 'there\'s an i18n instance here');
 });
 
 test('setDate with Date objects', function () {
@@ -252,6 +347,16 @@ test('getNextDecade, getPrevDecade', function () {
     deepEqual(dt._getNextDecade(), null);
 });
 
+test('getNextDecade, getPrevDecade and an uneven date-range', function () {
+    dt._setMinMax('1939-07-15:1951-02-10');
+    dt.setDate('1940-06-01');
+    equal(dt._getPrevDecade(), 1930);
+    equal(dt._getNextDecade(), 1950);
+    dt._setMinMax('1940-01-01:1945-02-10');
+    equal(dt._getPrevDecade(), null);
+    equal(dt._getNextDecade(), null);
+});
+
 test('dateCmp', function () {
     var y2k = { _year: 2000, _month: 0, _day: 1};
     var y2kandaday = { _year: 2000, _month: 0, _day: 2};
@@ -299,6 +404,55 @@ test('show', function () {
     dt.show();
     notEqual(Css.getStyle(dt._containerObject, 'display'), 'none');
 });
+
+
+
+test('createSelectOptions fills in the required fields', function () {
+    dt.destroy();
+
+    var yearField = InkElement.create('select');
+    var monthField = InkElement.create('select');
+    var dayField = InkElement.create('select')
+
+    mkDatePicker({ createSelectOptions: true, displayInSelect: true, dayField: dayField, monthField: monthField, yearField: yearField });
+
+    monthField.value = 1;
+    InkEvent.fire(monthField, 'change')
+    equal(monthField.value, "1", 'sanity check -- must be january');
+    deepEqual(
+        InkArray.map(dayField.children, function (opt) { return +opt.value }),
+        InkArray.range(1, 32));
+    deepEqual(
+        InkArray.map(monthField.children, function (opt) { return +opt.value }),
+        InkArray.range(1, 13));
+    deepEqual(
+        InkArray.map(yearField.children, function (opt) { return +opt.value }),
+        InkArray.range(1900, 2000));
+})
+
+test('createSelectOptions -- changes what fields are visible when another is selected', function () {
+    dt.destroy();
+
+    var yearField = InkElement.create('select');
+    var monthField = InkElement.create('select');
+    var dayField = InkElement.create('select')
+
+    mkDatePicker({ createSelectOptions: true, displayInSelect: true, dayField: dayField, monthField: monthField, yearField: yearField });
+    monthField.value = 2;
+    InkEvent.fire(monthField, 'change')
+
+    deepEqual(
+        InkArray.map(dayField.children, function (opt) { return +opt.value }),
+        InkArray.range(1, 28 + 1));
+    
+    yearField.value = 1996;  // leap year
+    InkEvent.fire(yearField, 'change')
+    deepEqual(
+        InkArray.map(dayField.children, function (opt) { return +opt.value }),
+        InkArray.range(1, 29 + 1));
+})
+
+
 
 test('destroy', function () {
     ok(testWrapper.children.length > 1 || testWrapper.firstChild !== dtElm, 'sanity check. if this fails, review the test because you\'ve changed the DOM structure of this component');

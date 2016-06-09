@@ -28,51 +28,76 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Loops through an array, grouping similar items together.
+         * Finds similar objects in an array and groups them together into subarrays for you. Groups have 1 or more item each.
          * @method groupBy
          * @param {Array}    arr             The input array.
          * @param {Object}   [options]       Options object, containing:
-         * @param {Function} [options.key]   A function which computes the group key by which the items are grouped.
+         * @param {Boolean}  [options.adjacentGroups] Set to `true` to mimick the python `groupby` function and only group adjacent things. For example, `'AABAA'` becomes `[['A', 'A'], ['B'], ['A', 'A']]` instead of `{ 'A': ['A', 'A', 'A', 'A'], 'B': ['B'] }`
+         * @param {Function|String} [options.key]   A function which computes the group key by which the items are grouped. Alternatively, you can pass a string and groupBy will pluck it out of the object and use that as a key.
          * @param {Boolean}  [options.pairs] Set to `true` if you want to output an array of `[key, [group...]]` pairs instead of an array of groups.
-         * @return {Array} An array containing arrays of chunks.
+         * @return {Array} An array containing the groups (which are arrays of input items)
          *
          * @example
-         *        InkArray.groupBy([1, 1, 2, 2, 3, 1])  // -> [ [1, 1], [2, 2], [3], [1] ]
+         *        InkArray.groupBy([1, 1, 2, 2, 3, 1])  // -> [ [1, 1, 1], [2, 2], [3] ]
          *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor })  // -> [ [1.1, 1.2], [2.1] ]
          *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
+         *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
+         *        InkArray.groupBy([
+         *            { year: 2000, month: 1 },
+         *            { year: 2000, month: 2 },
+         *            { year: 2001, month: 4 }
+         *        ], { key: 'year' })  // -> [ [ { year: 2000, month: 1 }, { year: 2000, month: 2} ], [ { year: 2001, month: 2 } ] ]
          *
          **/
         groupBy: function (arr, options) {
             options = options || {};
-            var ret = [];
-            var latestGroup;
-            function eq(a, b) {
-                return outKey(a) === outKey(b);
-            }
+
+            var latestKey;
             function outKey(item) {
                 if (typeof options.key === 'function') {
                     return options.key(item);
+                } else if (typeof options.key === 'string') {
+                    return item[options.key];
                 } else {
                     return item;
                 }
             }
 
-            for (var i = 0, len = arr.length; i < len; i++) {
-                latestGroup = [arr[i]];
+            function newGroup(key) {
+                var ret = options.pairs ? [key, []] : [];
+                groups.push(ret);
+                keys.push(key);
+                return ret;
+            }
 
-                // Chunkin'
-                while ((i + 1 < len) && eq(arr[i], arr[i + 1])) {
-                    latestGroup.push(arr[i + 1]);
-                    i++;
+            var keys = [];
+            var groups = [];
+
+            for (var i = 0, len = arr.length; i < len; i++) {
+                latestKey = outKey(arr[i]);
+
+                // Ok we have a new item, what group do we push it to?
+                var pushTo;
+                if (options.adjacentGroups) {
+                    // In adjacent groups we just look at the previous group to see if it matches us.
+                    if (keys[keys.length - 1] === latestKey) {
+                        pushTo = groups[groups.length - 1];
+                    } else {
+                        // This doesn't belong to the latest group, make a new one
+                        pushTo = newGroup(latestKey);
+                    }
+                } else {
+                    // Find a group which had this key before, otherwise make a new group
+                    pushTo = groups[InkArray.keyValue(latestKey, keys, true)] || newGroup(latestKey);
                 }
 
-                if (options.pairs) {
-                    ret.push([outKey(arr[i]), latestGroup]);
+                if (!options.pairs) {
+                    pushTo.push(arr[i]);
                 } else {
-                    ret.push(latestGroup);
+                    pushTo[1].push(arr[i]);
                 }
             }
-            return ret;
+            return groups;
         },
 
         /**
@@ -238,6 +263,25 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
             for (var i = 0, len = array.length >>> 0; i < len; i++) {
                 callback.call(context, array[i], i, array);
             }
+        },
+
+        /**
+         * Like forEach, but for objects.
+         *
+         * Calls `callback` with `(value, key, entireObject)` once for each key-value pair in `obj`
+         *
+         * @method forEachObj
+         * @param {Object}      obj         Input object
+         * @param {Function}    callback    Iteration callback, called once for each key/value pair in the object. `function (value, key, all) { this === context }`
+         * @param {Mixed}       [context]   Set what the context (`this`) in the function will be.
+         * @return void
+         * @public
+         * @sample Ink_Util_Array_forEachObj.html
+         **/
+        forEachObj: function(obj, callback, context) {
+            InkArray.forEach(InkArray.keys(obj), function (item) {
+                callback.call(context || null, obj[item], item, obj);
+            });
         },
 
         /**
@@ -413,6 +457,11 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          **/
         range: function range(start, stop, step) {
             // From: https://github.com/mcandre/node-range
+            if (arguments.length === 1) {
+                stop = start;
+                start = 0;
+            }
+
             if (!step) {
                 step = 1;
             }
@@ -447,6 +496,28 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          */
         insert: function(arr, idx, value) {
             arr.splice(idx, 0, value);
+        },
+
+        /**
+         * Object.keys replacement. Returns a list of an object's own properties.
+         *
+         * If Object.keys is available, just calls it.
+         *
+         * @method keys
+         * @param {Object} obj Object with the properties.
+         * @return {Array} An array of strings describing the properties in the given object.
+         * @public
+         *
+         **/
+        keys: function (obj) {
+            if (Object.keys) {
+                return Object.keys(obj);
+            }
+            var ret = [];
+            for (var k in obj) if (obj.hasOwnProperty(k)) {
+                ret.push(k);
+            }
+            return ret;
         },
 
         /**

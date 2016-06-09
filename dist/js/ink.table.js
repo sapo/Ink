@@ -59,7 +59,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
      * @class Ink.UI.Table
      * @constructor
      * @version 1
-     * @param {String|Element}      selector                                Your `<table>` element.
+     * @param {String|Element}      selector                                Your `table` element.
      * @param {Object}              [options] Options object containing:
      * @param {Number}              [options.pageSize]                      Number of rows per page. Omit to avoid paginating.
      * @param {String}              [options.endpoint]                      Endpoint to get the records via AJAX. Omit if you don't want to do AJAX
@@ -136,7 +136,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             /**
              * Checking if it's in markup mode or endpoint mode
              */
-            this._markupMode = !this._options.endpoint;
+            this._markupMode = !(this._options.endpoint || this._options.createEndpointURL);
 
             if( this._options.visibleFields ){
                 this._options.visibleFields = this._options.visibleFields.toString().split(/[, ]+/g);
@@ -221,7 +221,7 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             var tgtEl = Event.element(event),
                 paginated = this._options.pageSize !== undefined;
 
-            Event.stop(event);
+            Event.stopDefault(event);
 
             var index = InkArray.keyValue(tgtEl, this._headers, true);
             var sortable = index !== false && this._sortableFields[index] !== undefined;
@@ -255,18 +255,21 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
         _invertSortOrder: function (index, sortAndReverse) {
             var isAscending = this._sortableFields[index] === 'asc';
 
+            // Reset the sort order of everything
             for (var i = 0, len = this._headers.length; i < len; i++) {
                 this._setSortOrderOfColumn(i, null);
             }
+            // Except for the index we're looking at
+            this._setSortOrderOfColumn(index, !isAscending);
 
             if (sortAndReverse) {
                 this._sort(index);
                 if (isAscending) {
                     this._data.reverse();
                 }
+            } else {
+                this._getData();
             }
-
-            this._setSortOrderOfColumn(index, !isAscending);
         },
 
         _setSortOrderOfColumn: function(index, up) {
@@ -592,10 +595,10 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
             var sortOrder = this._getSortOrder() || null;
             var page = null;
 
-            if (this._pagination) {
+            if (this._options.pageSize) {
                 page = {
                     size: this._options.pageSize,
-                    page: this._pagination.getCurrent() + 1
+                    page: this._pagination ? this._pagination.getCurrent() + 1 : 1
                 };
             }
 
@@ -620,13 +623,13 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 return null; // no sorting going on
             }
             return {
-                field: this._originalFields[index],
+                field: this._originalFields[index] || Element.textContent(this._headers[index]),
                 order: this._sortableFields[index]
             };
         },
 
         _getUrl: function (sort, page) {
-            var urlCreator = this._options.createEndpointUrl ||
+            var urlCreator = this._options.createEndpointURL ||
                 function (endpoint, sort, page
                         /* TODO implement filters too */) {
                     endpoint = InkUrl.parseUrl(endpoint);
@@ -702,6 +705,8 @@ Ink.createModule('Ink.UI.Table', '1', ['Ink.Util.Url_1','Ink.UI.Pagination_1','I
                 this._createHeadersFromJson( headers );
                 this._resetSortOrder();
                 this._addHeadersClasses();
+            } else {
+                this._resetSortOrder();
             }
 
             this._createRowsFromJSON( rows );

@@ -9,7 +9,7 @@
     'use strict';
 
     // skip redefinition of Ink core
-    if ('Ink' in window) { return; }
+    if ('Ink' in window && typeof Ink.requireModules === 'function') { return; }
 
 
     // internal data
@@ -47,7 +47,7 @@
         /**
          * @property {String} VERSION
          **/
-        VERSION: '3.1.4',
+        VERSION: '3.1.10',
         _checkPendingRequireModules: function() {
             var I, F, o, dep, mod, cb, pRMs = [];
             var toApply = [];
@@ -537,7 +537,7 @@
          *
          * @method i
          * @param {String} id Element ID
-         * @return {DOMElement|null} The element returned by `document.getElementById(id)` if `id` was a string, and `id` otherwise.
+         * @return {DOMElement} The element returned by `document.getElementById(id)` if `id` was a string, and `id` otherwise.
          * @sample Ink_1_i.html
          */
         i: function(id) {
@@ -1116,6 +1116,7 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
             if (this.transport) {
                 clearTimeout(this.delayTimeout);
                 clearTimeout(this.stoTimeout);
+                this._aborted = true;
                 try { this.transport.abort(); } catch(ex) {}
                 this.finish();
             }
@@ -1128,8 +1129,8 @@ Ink.createModule('Ink.Net.Ajax', '1', [], function() {
          * @return {void}
          * @public
          */
-        runStateChange: function()
-        {
+        runStateChange: function() {
+            if (this._aborted) { return; }  // We don't care!
             var rs = this.transport.readyState;
             if (rs === 3) {
                 if (this.isHTTP) {
@@ -1835,7 +1836,7 @@ Ink.createModule('Ink.Dom.Browser', '1', [], function() {
 
             sAgent = sAgent.toLowerCase();
 
-            if (/applewebkit\//.test(sAgent)) {
+            if (/applewebkit\//.test(sAgent) && !/iemobile/.test(sAgent)) {
                 this.cssPrefix = '-webkit-';
                 this.domPrefix = 'Webkit';
                 if(/(chrome|crios)\//.test(sAgent)) {
@@ -3555,7 +3556,8 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
             if (typeof options === 'boolean') {
                 options = {partial: options, margin: 0};
             }
-            options = Ink.extendObj({ partial: false, margin: 0}, options || {});
+            options = options || {};
+            options.margin = options.margin || 0;
             if (options.partial) {
                 return  dims.bottom + options.margin > 0                           && // from the top
                         dims.left   - options.margin < InkElement.viewportWidth()  && // from the right
@@ -4576,7 +4578,7 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Get the scroll's width.
+         * Returns how much pixels the page was scrolled from the left side of the document.
          * @method scrollWidth
          * @return {Number} Scroll width
          */
@@ -4591,13 +4593,16 @@ Ink.createModule('Ink.Dom.Element', 1, [], function() {
         },
 
         /**
-         * Get the scroll's height.
+         * Returns how much pixels the page was scrolled from the top of the document.
          * @method scrollHeight
          * @return {Number} Scroll height
          */
         scrollHeight: function() {
             if (typeof window.self.pageYOffset !== 'undefined') {
                 return window.self.pageYOffset;
+            }
+            if (typeof document.body !== 'undefined' && typeof document.body.scrollTop !== 'undefined' && typeof document.documentElement !== 'undefined' && typeof document.documentElement.scrollTop !== 'undefined') {
+                return document.body.scrollTop || document.documentElement.scrollTop;
             }
             if (typeof document.documentElement !== 'undefined' && typeof document.documentElement.scrollTop !== 'undefined') {
                 return document.documentElement.scrollTop;
@@ -4838,7 +4843,7 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
             // on the DOM, stop() is an alias for both of them together
             Event.prototype.preventDefault = function () {
               if (this.originalEvent.preventDefault) this.originalEvent.preventDefault()
-              else this.originalEvent.returnValue = false
+              else try { this.originalEvent.returnValue = false } catch(e) {}
             }
             Event.prototype.stopPropagation = function () {
               if (this.originalEvent.stopPropagation) this.originalEvent.stopPropagation()
@@ -5408,19 +5413,28 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      * @method throttle
      * @param {Function} func   Function to call. Arguments and context are both passed.
      * @param {Number} [wait]=0 Milliseconds to wait between calls.
+     * @param {Object} [options={}] Options object, containing:
+     * @param {Boolean} [options.preventDefault=false] Whether to call preventDefault() on events received here. Use this to throttle mousemove events which you also want to preventDefault() because throttle will not call your function all the time so you don't get a chance to preventDefault() all the events, altough you might need to.
+     * @param {Mixed} [options.bind] The throttled function is bound to this context. Otherwise, it will use whatever `this` it gets. Just a shorthand of also calling Ink.bind(context, func) on the function after throttling it.
      * @return {Function} A function throttled which will only be called at most every `wait` milliseconds.
      * @sample Ink_Dom_Event_1_throttle.html 
      **/
-    throttle: function (func, wait) {
+    throttle: function (func, wait, opt) {
         wait = wait || 0;
+        opt = opt || {};
         var lastCall = 0;  // Warning: This breaks on Jan 1st 1970 0:00
         var timeout;
-        function throttled() {
+        function throttled(maybeEvent) {
             var now = +new Date();
             var timeDiff = now - lastCall;
+            if (opt.preventDefault &&
+                    maybeEvent &&
+                    typeof maybeEvent.preventDefault === 'function') {
+                maybeEvent.preventDefault();
+            }
             if (timeDiff >= wait) {
                 lastCall = now;
-                return func.apply(this, [].slice.call(arguments));
+                return func.apply('bind' in opt ? opt.bind : this, [].slice.call(arguments));
             } else {
                 var that = this;
                 var args = [].slice.call(arguments);
@@ -5734,9 +5748,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerX: function(ev)
     {
-        return (ev.touches && ev.touches[0] && ev.touches[0].clientX) ||
+        return (ev.touches && ev.touches[0] && ev.touches[0].pageX) ||
             (ev.pageX) ||
-            (ev.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
+            (ev.clientX);
     },
 
     /**
@@ -5749,9 +5763,9 @@ Ink.createModule('Ink.Dom.Event', 1, [], function() {
      */
     pointerY: function(ev)
     {
-        return (ev.touches && ev.touches[0] && ev.touches[0].clientY) ||
+        return (ev.touches && ev.touches[0] && ev.touches[0].pageY) ||
             (ev.pageY) ||
-            (ev.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
+            (ev.clientY);
     },
 
     /**
@@ -5973,17 +5987,26 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
             var pairs = this.asPairs(form, { elements: true, emptyArray: emptyArrayToken, outputUnchecked: options.outputUnchecked });
             if (pairs == null) { return pairs; }
             InkArray.forEach(pairs, function (pair) {
+                var phpArray = /\[\]$/.test(pair[0]);
                 var name = pair[0].replace(/\[\]$/, '');
                 var value = pair[1];
                 var el = pair[2];
 
                 if (value === emptyArrayToken) {
                     out[name] = [];  // It's an empty select[multiple]
-                } else if (!(FormSerialize._resultsInArray(el) || /\[\]$/.test(pair[0]))) {
+                } else if (!(FormSerialize._resultsInArray(el) || phpArray)) {
                     out[name] = value;
                 } else {
-                    out[name] = out[name] || [];
-                    out[name].push(value);
+                    if (name in out) {
+                        if (!(out[name] instanceof Array)) {
+                            out[name] = [out[name]];
+                        }
+                        out[name].push(value);
+                    } else if (phpArray) {
+                        out[name] = [value];
+                    } else {
+                        out[name] = value;
+                    }
                 }
             });
 
@@ -6091,7 +6114,8 @@ Ink.createModule('Ink.Dom.FormSerialize', 1, ['Ink.Util.Array_1', 'Ink.Dom.Eleme
 
         _fillInPairs: function (form, pairs) {
             pairs = InkArray.groupBy(pairs, {
-                key: function (pair) { return pair[0].replace(/\[\]$/, ''); }
+                key: function (pair) { return pair[0].replace(/\[\]$/, ''); },
+                adjacentGroups: true
             });
 
             // For each chunk...
@@ -8345,51 +8369,76 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
         },
 
         /**
-         * Loops through an array, grouping similar items together.
+         * Finds similar objects in an array and groups them together into subarrays for you. Groups have 1 or more item each.
          * @method groupBy
          * @param {Array}    arr             The input array.
          * @param {Object}   [options]       Options object, containing:
-         * @param {Function} [options.key]   A function which computes the group key by which the items are grouped.
+         * @param {Boolean}  [options.adjacentGroups] Set to `true` to mimick the python `groupby` function and only group adjacent things. For example, `'AABAA'` becomes `[['A', 'A'], ['B'], ['A', 'A']]` instead of `{ 'A': ['A', 'A', 'A', 'A'], 'B': ['B'] }`
+         * @param {Function|String} [options.key]   A function which computes the group key by which the items are grouped. Alternatively, you can pass a string and groupBy will pluck it out of the object and use that as a key.
          * @param {Boolean}  [options.pairs] Set to `true` if you want to output an array of `[key, [group...]]` pairs instead of an array of groups.
-         * @return {Array} An array containing arrays of chunks.
+         * @return {Array} An array containing the groups (which are arrays of input items)
          *
          * @example
-         *        InkArray.groupBy([1, 1, 2, 2, 3, 1])  // -> [ [1, 1], [2, 2], [3], [1] ]
+         *        InkArray.groupBy([1, 1, 2, 2, 3, 1])  // -> [ [1, 1, 1], [2, 2], [3] ]
          *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor })  // -> [ [1.1, 1.2], [2.1] ]
          *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
+         *        InkArray.groupBy([1.1, 1.2, 2.1], { key: Math.floor, pairs: true })  // -> [ [1, [1.1, 1.2]], [2, [2.1]] ]
+         *        InkArray.groupBy([
+         *            { year: 2000, month: 1 },
+         *            { year: 2000, month: 2 },
+         *            { year: 2001, month: 4 }
+         *        ], { key: 'year' })  // -> [ [ { year: 2000, month: 1 }, { year: 2000, month: 2} ], [ { year: 2001, month: 2 } ] ]
          *
          **/
         groupBy: function (arr, options) {
             options = options || {};
-            var ret = [];
-            var latestGroup;
-            function eq(a, b) {
-                return outKey(a) === outKey(b);
-            }
+
+            var latestKey;
             function outKey(item) {
                 if (typeof options.key === 'function') {
                     return options.key(item);
+                } else if (typeof options.key === 'string') {
+                    return item[options.key];
                 } else {
                     return item;
                 }
             }
 
-            for (var i = 0, len = arr.length; i < len; i++) {
-                latestGroup = [arr[i]];
+            function newGroup(key) {
+                var ret = options.pairs ? [key, []] : [];
+                groups.push(ret);
+                keys.push(key);
+                return ret;
+            }
 
-                // Chunkin'
-                while ((i + 1 < len) && eq(arr[i], arr[i + 1])) {
-                    latestGroup.push(arr[i + 1]);
-                    i++;
+            var keys = [];
+            var groups = [];
+
+            for (var i = 0, len = arr.length; i < len; i++) {
+                latestKey = outKey(arr[i]);
+
+                // Ok we have a new item, what group do we push it to?
+                var pushTo;
+                if (options.adjacentGroups) {
+                    // In adjacent groups we just look at the previous group to see if it matches us.
+                    if (keys[keys.length - 1] === latestKey) {
+                        pushTo = groups[groups.length - 1];
+                    } else {
+                        // This doesn't belong to the latest group, make a new one
+                        pushTo = newGroup(latestKey);
+                    }
+                } else {
+                    // Find a group which had this key before, otherwise make a new group
+                    pushTo = groups[InkArray.keyValue(latestKey, keys, true)] || newGroup(latestKey);
                 }
 
-                if (options.pairs) {
-                    ret.push([outKey(arr[i]), latestGroup]);
+                if (!options.pairs) {
+                    pushTo.push(arr[i]);
                 } else {
-                    ret.push(latestGroup);
+                    pushTo[1].push(arr[i]);
                 }
             }
-            return ret;
+            return groups;
         },
 
         /**
@@ -8555,6 +8604,25 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
             for (var i = 0, len = array.length >>> 0; i < len; i++) {
                 callback.call(context, array[i], i, array);
             }
+        },
+
+        /**
+         * Like forEach, but for objects.
+         *
+         * Calls `callback` with `(value, key, entireObject)` once for each key-value pair in `obj`
+         *
+         * @method forEachObj
+         * @param {Object}      obj         Input object
+         * @param {Function}    callback    Iteration callback, called once for each key/value pair in the object. `function (value, key, all) { this === context }`
+         * @param {Mixed}       [context]   Set what the context (`this`) in the function will be.
+         * @return void
+         * @public
+         * @sample Ink_Util_Array_forEachObj.html
+         **/
+        forEachObj: function(obj, callback, context) {
+            InkArray.forEach(InkArray.keys(obj), function (item) {
+                callback.call(context || null, obj[item], item, obj);
+            });
         },
 
         /**
@@ -8730,6 +8798,11 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          **/
         range: function range(start, stop, step) {
             // From: https://github.com/mcandre/node-range
+            if (arguments.length === 1) {
+                stop = start;
+                start = 0;
+            }
+
             if (!step) {
                 step = 1;
             }
@@ -8764,6 +8837,28 @@ Ink.createModule('Ink.Util.Array', '1', [], function() {
          */
         insert: function(arr, idx, value) {
             arr.splice(idx, 0, value);
+        },
+
+        /**
+         * Object.keys replacement. Returns a list of an object's own properties.
+         *
+         * If Object.keys is available, just calls it.
+         *
+         * @method keys
+         * @param {Object} obj Object with the properties.
+         * @return {Array} An array of strings describing the properties in the given object.
+         * @public
+         *
+         **/
+        keys: function (obj) {
+            if (Object.keys) {
+                return Object.keys(obj);
+            }
+            var ret = [];
+            for (var k in obj) if (obj.hasOwnProperty(k)) {
+                ret.push(k);
+            }
+            return ret;
         },
 
         /**
@@ -10253,7 +10348,7 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
     var funcOrVal = function( ret , args ) {
         if ( typeof ret === 'function' ) {
             return ret.apply(this, args);
-        } else if (typeof ret !== undefined) {
+        } else if (typeof ret !== 'undefined') {
             return ret;
         } else {
             return '';
@@ -10290,6 +10385,17 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
 
             return this;
         },
+
+        clone: function () {
+            var theClone = new I18n();
+            for (var i = 0, len = this._dicts.length; i < len; i++) {
+                theClone.append(this._dicts[i]);
+            }
+            theClone.testMode(this.testMode());
+            theClone.lang(this.lang());
+            return theClone;
+        },
+
         /**
          * Adds translation strings for the helper to use.
          *
@@ -10397,21 +10503,22 @@ Ink.createModule('Ink.Util.I18n', '1', [], function () {
             var isObj = typeof pars[ 0 ] === 'object';
 
             var original = this.getKey( str );
+
             if ( original === undefined ) { original = this._testMode ? '[' + str + ']' : str; }
             if ( typeof original === 'number' ) { original += ''; }
 
             if (typeof original === 'string') {
                 original = original.replace( pattrText , function( m , $1 , $2 , $3 ) {
                     var ret =
-                        $1 ? $1 :
-                        $2 ? pars[ $2 - ( isObj ? 0 : 1 ) ] :
-                        $3 ? pars[ 0 ][ $3 ] || '' :
+                        $1            ? $1 :
+                        $2            ? pars[ $2 - ( isObj ? 0 : 1 ) ] :
+                        $3 && pars[0] ? pars[ 0 ][ $3 ] || '' :
                              pars[ (idx++) + ( isObj ? 1 : 0 ) ];
                     return funcOrVal( ret , [idx].concat(pars) );
                 });
                 return original;
             }
-             
+
             return (
                 typeof original === 'function' ? original.apply( this , pars ) :
                 original instanceof Array      ? funcOrVal( original[ pars[ 0 ] ] , pars ) :
@@ -13166,7 +13273,7 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
             var sum = 0, size, i;
             digits = String(digits);
             while (digits.length<12) {
-                digits = '0' + digits;
+                digits = '00000' + digits;
             }
             size = digits.length;
             for (i = (size - 1); i >= 0; i--) {
@@ -13179,14 +13286,25 @@ Ink.createModule('Ink.Util.Validator', '1', [], function() {
          * Validate an [EAN barcode](https://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29) string.
          * @method isEAN
          * @param {String} code The code containing the EAN
-         * @param {} [eanType='ean-13'] Select your EAN type. For now, only ean-13 is supported, and it's the default.
+         * @param {} [eanType='ean-13'] Select your EAN type. Can be 'ean-8' or 'ean-13'
          * @public
          * @return {Boolean} Whether the given `code` is an EAN-13
          */
         isEAN: function (code, eanType) {
             /* For future support of more eanTypes */
-            if (!(eanType === undefined || eanType === 'ean-13')) { return false; }
-            if (code.length !== 13) { return false; }
+            if (eanType === undefined) { eanType = 'ean-13'; }
+
+            switch(eanType) {
+                case 'ean-13':
+                    if (code.length !== 13) { return false; }
+                    break;
+                case 'ean-8':
+                    if (code.length !== 8) { return false; }
+                    break;
+                default:
+                    // Unknown barcode type
+                    return false;
+            }
 
             var digits = code.substr(0, code.length -1);
             var givenCheck = code.charAt(code.length - 1);
