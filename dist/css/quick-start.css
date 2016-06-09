@@ -9,6 +9,58 @@
  * @link      http://ink.sapo.pt
  * @version   3.1.10
  */
+/**
+ * Ink class names prefix
+ * Used in all of Inks components root elements
+ */
+/**
+ * Grid class names
+ */
+/**
+ * Alerts class names
+ */
+/**
+ * Badges class names
+ */
+/**
+ * Buttons class names
+ */
+/**
+ * Dismiss class names
+ */
+/**
+ * Forms class names
+ */
+/**
+ * Labels class names
+ */
+/**
+ * Navigation class names
+ */
+/**
+ * Dropdown class names
+ */
+/**
+ * Tables class names
+ */
+/**
+ * Images class names
+ */
+/**
+ * JS UI components classe names
+ */
+/**
+ * Colors
+ */
+/**
+ * Postion
+ */
+/**
+ * Hide/Show
+ */
+/**
+ * Space/Padding/Marign
+ */
 /** 
  * Sets the grids maximum width
  * @var $grid-max-width (pixels|ems|percentage)

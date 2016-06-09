@@ -376,7 +376,7 @@
         margin-left: auto;
         margin-right: auto;
     }
-    .#{$class-name}-#{$push-postion-class-name}-#{$right-position-class-name} {
+    .#{$class-name}-#{$push-postion-class-name}-#{$right-postion-class-name} {
         float: right;
     }
 
@@ -387,7 +387,7 @@
     .#{$class-name}-#{$align-postion-class-name}-#{$center-postion-class-name} {
         text-align: center;
     }
-    .#{$class-name}-#{$align-postion-class-name}-#{$right-position-class-name} {
+    .#{$class-name}-#{$align-postion-class-name}-#{$right-postion-class-name} {
         text-align: right;
     }
 

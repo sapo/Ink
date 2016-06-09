@@ -28,7 +28,7 @@
     margin-right: auto;
     @include experimental(justify-content, center, -moz, -webkit, not -o, not -ms, not -khtml, official);
 }
-.#{$push-postion-class-name}-#{$right-position-class-name} {
+.#{$push-postion-class-name}-#{$right-postion-class-name} {
     float: right;
     @include experimental(justify-content, flex-end, -moz, -webkit, not -o, not -ms, not -khtml, official);
 }
@@ -38,7 +38,7 @@
 .#{$align-postion-class-name}-#{$center-postion-class-name} {
     text-align: center;
 }
-.#{$align-postion-class-name}-#{$right-position-class-name} {
+.#{$align-postion-class-name}-#{$right-postion-class-name} {
     text-align: right;
 }
 

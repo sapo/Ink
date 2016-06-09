@@ -15,12 +15,12 @@
 @import "contrib/compass/utilities";
 
 // IMPORT CONFIG FILES (THESE CONTAIN VARIABLE DEFINITIONS)
+@import "config/classnames";
 @import "config/common";
 @import "config/typography";
 @import "config/colors";
 @import "config/alerts";
 @import "config/buttons";
-@import "config/classnames";
 @import "config/forms";
 @import "config/grid";
 @import "config/labels";

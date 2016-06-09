@@ -92,8 +92,8 @@
         margin-right: auto;
     }
 
-    .#{$push-postion-class-name}-#{$right-position-class-name},
-    .#{$class-name}-#{$push-postion-class-name}-#{$right-position-class-name} {
+    .#{$push-postion-class-name}-#{$right-postion-class-name},
+    .#{$class-name}-#{$push-postion-class-name}-#{$right-postion-class-name} {
         @include experimental(justify-content, flex-end, -moz, -webkit, not -o, -ms, not -khtml, official);
         @include experimental(flex-pack, end, not -moz, not -webkit, not -o, -ms, not -khtml, not official);
         float: right;
