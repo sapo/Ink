@@ -15,7 +15,10 @@
 
         position: absolute;
 
-        &.#{$up-postion-class-name}, &.#{$down-postion-class-name}, &.#{$left-postion-class-name}, &.#{$right-postion-class-name} {
+        &.#{$up-postion-class-name},
+        &.#{$down-postion-class-name}, 
+        &.#{$left-postion-class-name}, 
+        &.#{$right-postion-class-name} {
             width: 0; 
             height: 0;
         }

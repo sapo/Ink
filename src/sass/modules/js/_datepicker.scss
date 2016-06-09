@@ -1,10 +1,10 @@
 // For the datepicker and the calendar inside it
 
-.#{$ink-class-prefix}-datepicker-wrapper {
+.#{$datepicker-class-name}-wrapper {
     position: relative;
 }
 
-.#{$ink-class-prefix}-datepicker-calendar {
+.#{$datepicker-class-name}-calendar {
     margin-top: 0;  // because of the * + * rule
     position: absolute;
 
@@ -29,7 +29,7 @@
     }
 }
 
-.#{$ink-class-prefix}-datepicker-wrapper, .#{$ink-class-prefix}-datepicker-calendar {
+.#{$datepicker-class-name}-wrapper, .#{$datepicker-class-name}-calendar {
     display: inline;
     display: inline-block;
 }
