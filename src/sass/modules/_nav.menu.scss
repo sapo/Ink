@@ -33,7 +33,7 @@
             }
 
             // horizontal menus
-            &.horizontal {
+            &.#{$horizontal} {
 
 
                 &.scrollable {
@@ -92,15 +92,15 @@
                                 top: 0;
                                 @include border-radius($navigation-border-radius);
 
-                                &.left  { right: 100%; }
-                                &.right { left: 100%; }
+                                &.#{$left-postion-class-name}  { right: 100%; }
+                                &.#{$right-postion-class-name} { left: 100%; }
                             }
                         }
                     }
                 }
             }
             // vertical menus
-            &.vertical {
+            &.#{$vertical} {
                 li {
                     line-height: $navigation-line-height;
                     position: relative;
@@ -118,8 +118,8 @@
                             top: 0;
                             @include border-radius($navigation-border-radius);
 
-                            &.left  { right: 100%; }
-                            &.right { left: 100%; }
+                            &.#{$left-postion-class-name}  { right: 100%; }
+                            &.#{$right-postion-class-name} { left: 100%; }
                         }
                     }
                 }

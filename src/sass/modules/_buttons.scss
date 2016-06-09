@@ -15,7 +15,7 @@
     }
 }
 
-.button-group {
+.#{$button-class-name}-group {
 
     & > .#{$button-class-name}  {
 
@@ -46,9 +46,9 @@
     @include pie-clearfix;
 }
 
-.button-toolbar {
+.#{$button-class-name}-toolbar {
     
-    & > .button-group {
+    & > .#{$button-class-name}-group {
         margin-right: $button-margin * 2;
         float: left;
     }

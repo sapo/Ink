@@ -4,7 +4,7 @@
 // Note: these aren't semantic.
 @mixin print-utilities($media: print) {
   @if $media == print {
-    .noprint, .no-print { display: none; }
+    .#{$no}print, .#{$no}-print { display: none; }
     #{elements-of-type(block)} {
       &.print-only { display: block; }
     }

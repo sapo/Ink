@@ -15,7 +15,7 @@ figure {
             background: $caption-background;
             line-height: 1.3;
 
-            &.over-top, &.over-bottom {
+            &.over-#{$top-postion-class-name}, &.over-#{$bottom-postion-class-name} {
                 position: absolute;
                 width: 100%;
                 left: 0;
@@ -27,12 +27,12 @@ figure {
                 }
             }
 
-            &.over-top {                    
+            &.over-#{$top-postion-class-name} {                    
                 top: 0;
                 background: $caption-over-color;
             }
 
-            &.over-bottom {
+            &.over-#{$bottom-postion-class-name} {
                 bottom: 0;
                 background: $caption-over-color;
             }

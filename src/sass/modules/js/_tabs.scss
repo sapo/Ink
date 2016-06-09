@@ -41,7 +41,7 @@
     }
 
     // top navigation
-    &.top {
+    &.#{$top-postion-class-name} {
 
         > .tabs-nav {
 
@@ -68,7 +68,7 @@
     }
 
     // bottom navigation
-    &.bottom {
+    &.#{$bottom-postion-class-name} {
 
         > .tabs-nav {
             border-top: 1px solid $grey-20;
@@ -94,7 +94,7 @@
     }
 
     // left navigation
-    &.left {
+    &.#{$left-postion-class-name} {
 
         > .tabs-nav {
             border-right: 1px solid $grey-20;
@@ -123,7 +123,7 @@
     }
 
     // right navigation
-    &.right {
+    &.#{$right-postion-class-name} {
 
         > .tabs-nav {
             border-left: 1px solid $grey-20;

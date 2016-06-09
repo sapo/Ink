@@ -8,19 +8,19 @@ body {
 
         max-width: 100%;
 
-        .left-drawer,
-        .right-drawer,
+        .#{$left-postion-class-name}-drawer,
+        .#{$right-postion-class-name}-drawer,
         .content-drawer {
           @include transition-property(transform);
           @include transition-duration($speed);
           @include transition-timing-function($easing);
         }
 
-        .left-drawer {
+        .#{$left-postion-class-name}-drawer {
             left: ($width * -1);
         }
 
-        .right-drawer {
+        .#{$right-postion-class-name}-drawer {
             right: ($width * -1);
         }
 
@@ -28,8 +28,8 @@ body {
             width: 100%;
         }
 
-        .left-drawer,
-        .right-drawer {
+        .#{$left-postion-class-name}-drawer,
+        .#{$right-postion-class-name}-drawer {
           position: absolute;
           top: 0;
           z-index: 0;
@@ -40,14 +40,14 @@ body {
           height: 100%;
           -webkit-overflow-scrolling: touch;
 
-          &.show {
+          &.#{$show} {
             display: block;
             position: fixed;
           }
 
         }
 
-        &.push {
+        &.#{$push-postion-class-name} {
 
           overflow: hidden;
           width: 100%;
@@ -57,14 +57,14 @@ body {
             overflow: hidden;
           }
 
-          &.left {
-            .left-drawer, .content-drawer {
+          &.#{$left-postion-class-name} {
+            .#{$left-postion-class-name}-drawer, .content-drawer {
               @include translate($width,0);
             }
           }
 
-          &.right {
-            .right-drawer, .content-drawer {
+          &.#{$right-postion-class-name} {
+            .#{$right-postion-class-name}-drawer, .content-drawer {
               @include translate(($width * -1),0);
             }
           }
@@ -75,14 +75,14 @@ body {
           overflow: hidden;
           -webkit-user-drag: none;
 
-          &.left {
-            .left-drawer {
+          &.#{$left-postion-class-name} {
+            .#{$left-postion-class-name}-drawer {
               @include translate($width,0);
             }
           }
 
-          &.right {
-            .right-drawer {
+          &.#{$right-postion-class-name} {
+            .#{$right-postion-class-name}-drawer {
               @include translate(($width * -1),0);
             }
           }

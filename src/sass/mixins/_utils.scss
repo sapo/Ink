@@ -1,50 +1,50 @@
 // show hidden element
-.show-all {
+.#{$show}-all {
     display: inherit;
 }
 
 // hide visible element
-.hide-all {
+.#{$hide}-all {
     display: none !important; 
 }
 
 // Removes margin
-.no-margin {
+.#{$no}-#{$margin} {
     margin: 0 !important;
 }
 // Removes TOP margin
-.no-margin-top {
+.#{$no}-#{$margin}-#{$top-postion-class-name} {
     margin-top: 0 !important;
 }
 // Removes BOTTOM margin
-.no-margin-bottom {
+.#{$no}-#{$margin}-#{$bottom-postion-class-name} {
     margin-bottom: 0 !important;
 }
 
 // Removes padding
-.no-padding {
+.#{$no}-#{$padding} {
     padding: 0 !important;
 }
 
-.push-left {
+.#{$push-postion-class-name}-#{$left-postion-class-name} {
     float: left;        
 }
-.push-center {
+.#{$push-postion-class-name}-#{$center-postion-class-name} {
     float: none !important;
     margin-left: auto;
     margin-right: auto;
 }
-.push-right {
+.#{$push-postion-class-name}-#{$right-position-class-name} {
     float: right;
     @include experimental(justify-content, flex-end, -moz, -webkit, not -o, not -ms, not -khtml, official);
 }
-.align-left {
+.#{$align-postion-class-name}-#{$left-postion-class-name} {
     text-align: left;
 }
-.align-center {
+.#{$align-postion-class-name}-#{$center-postion-class-name} {
     text-align: center;
 }
-.align-right {
+.#{$align-postion-class-name}-#{$right-position-class-name} {
     text-align: right;
 }
 

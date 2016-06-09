@@ -1,40 +1,40 @@
 // For the datepicker and the calendar inside it
 
-.ink-datepicker-wrapper {
+.#{$ink-class-prefix}-datepicker-wrapper {
     position: relative;
 }
 
-.ink-datepicker-calendar {
+.#{$ink-class-prefix}-datepicker-calendar {
     margin-top: 0;  // because of the * + * rule
     position: absolute;
 
-    &.right {
+    &.#{$right-postion-class-name} {
         left: 100%;
         top: 0;
     }
 
-    &.left {
+    &.#{$left-postion-class-name} {
         right: 100%;
         top: 0;
     }
 
-    &.bottom {
+    &.#{$bottom-postion-class-name} {
         top: 100%;
         left: 0;
     }
 
-    &.top {
+    &.#{$top-postion-class-name} {
         bottom: 100%;
         left: 0;
     }
 }
 
-.ink-datepicker-wrapper, .ink-datepicker-calendar {
+.#{$ink-class-prefix}-datepicker-wrapper, .#{$ink-class-prefix}-datepicker-calendar {
     display: inline;
     display: inline-block;
 }
 
-.ink-calendar {
+.#{$ink-class-prefix}-calendar {
     @include border-radius($border-radius);
     text-align: center;
     padding: $calendar-padding;
@@ -55,11 +55,11 @@
 }
 
 // When a modal is open...
-html.ink-modal-is-open .ink-calendar {
+html.#{$ink-class-prefix}-modal-is-open .#{$ink-class-prefix}-calendar {
     z-index: $layer-100 + 1;  // 1 plus the z-index of a modal
 }
 
-.ink-calendar-top-options {
+.#{$ink-class-prefix}-calendar-#{$top-postion-class-name}-options {
     padding: 5px; 
     font-size: .813em;
     cursor: pointer;
@@ -68,15 +68,15 @@ html.ink-modal-is-open .ink-calendar {
     .close { float: right; }
 }
     
-.ink-calendar-top {
+.#{$ink-class-prefix}-calendar-#{$top-postion-class-name} {
     line-height: 2em;
     background: $datepicker-header-bg;
     @include border-radius($border-radius);
 
     div { float:left; }
 
-    .ink-calendar-prev,
-    .ink-calendar-next {
+    .#{$ink-class-prefix}-calendar-prev,
+    .#{$ink-class-prefix}-calendar-next {
         width: 10%;
 
         a {
@@ -84,14 +84,14 @@ html.ink-modal-is-open .ink-calendar {
         }
     }
 
-    .ink-calendar-month_desc {
+    .#{$ink-class-prefix}-calendar-month_desc {
         width: 80%
     }
 }   
 
-.ink-calendar-month,
-.ink-calendar-year-selector,
-.ink-calendar-month-selector {
+.#{$ink-class-prefix}-calendar-month,
+.#{$ink-class-prefix}-calendar-year-selector,
+.#{$ink-class-prefix}-calendar-month-selector {
     margin-top: .5em;
     padding-left: 0;
 
@@ -106,14 +106,14 @@ html.ink-modal-is-open .ink-calendar {
 
             &:hover { background: $datepicker-cellHover; }
 
-            &.ink-calendar-on, 
-            &.ink-calendar-on:hover {
+            &.#{$ink-class-prefix}-calendar-on, 
+            &.#{$ink-class-prefix}-calendar-on:hover {
                 background: $datepicker-active-bg;
                 color: $datepicker-active-color;
             }
 
-            &.ink-calendar-off,
-            &.ink-calendar-off:hover {
+            &.#{$ink-class-prefix}-calendar-off,
+            &.#{$ink-class-prefix}-calendar-off:hover {
                 background: $datepicker-bgColor;
                 color: $datepicker-inactive-color;
                 cursor: default;
@@ -135,29 +135,29 @@ html.ink-modal-is-open .ink-calendar {
     }
 }
 
-.ink-calendar-year-selector ul li { width: 25%; }
-.ink-calendar-month-selector ul li { width: 25%; }
+.#{$ink-class-prefix}-calendar-year-selector ul li { width: 25%; }
+.#{$ink-class-prefix}-calendar-month-selector ul li { width: 25%; }
 
-.ink-calendar-year-selector,
-.ink-calendar-month-selector { 
+.#{$ink-class-prefix}-calendar-year-selector,
+.#{$ink-class-prefix}-calendar-month-selector { 
     display: none; 
 }
 
-.ink-calendar-off, .action_inactive {
+.#{$ink-class-prefix}-calendar-off, .action_inactive {
     color: #ddd !important;
 }
 
-.ink-calendar-month .ink-calendar-header {
+.#{$ink-class-prefix}-calendar-month .#{$ink-class-prefix}-calendar-header {
     border-bottom: 1px solid rgba(0,0,0,.1); 
     padding-bottom: .5em;
     margin-bottom: .5em;
     color: #aaa;
 }
 
-.ink-calendar-top,
-.ink-calendar-middle,
-.ink-calendar-top-options,
-.ink-calendar-month .ink-calendar-header,
-.ink-calendar-month .ink-calendar-middle ul {
+.#{$ink-class-prefix}-calendar-#{$top-postion-class-name},
+.#{$ink-class-prefix}-calendar-#{$middle-postion-class-name},
+.#{$ink-class-prefix}-calendar-#{$top-postion-class-name}-options,
+.#{$ink-class-prefix}-calendar-month .#{$ink-class-prefix}-calendar-header,
+.#{$ink-class-prefix}-calendar-month .#{$ink-class-prefix}-calendar-#{$middle-postion-class-name} ul {
     @include pie-clearfix;
 }

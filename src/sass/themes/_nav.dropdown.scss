@@ -1,9 +1,9 @@
 .#{$dropdown-class-name} {
 
-    &.blue      { @include nav-dropdown($blue); }
-    &.green     { @include nav-dropdown($green); }
-    &.orange    { @include nav-dropdown($orange); }
-    &.red       { @include nav-dropdown($red); }
-    &.black     { @include nav-dropdown($grey-90); }
-    &.blue      { @include nav-dropdown($blue); }
+    &.#{$blue-classname}      { @include nav-dropdown($blue); }
+    &.#{$green-classname}     { @include nav-dropdown($green); }
+    &.#{$orange-classname}    { @include nav-dropdown($orange); }
+    &.#{$red-classname}       { @include nav-dropdown($red); }
+    &.#{$black-classname}     { @include nav-dropdown($grey-90); }
+    &.#{$blue-classname}      { @include nav-dropdown($blue); }
 }

@@ -42,7 +42,7 @@
             }
         }
 
-        &.vertical {
+        &.#{$vertical} {
 
             li {
                 a {
@@ -84,7 +84,7 @@
             }
         }
 
-        &.horizontal {
+        &.#{$horizontal} {
 
             > li {
 

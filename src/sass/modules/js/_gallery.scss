@@ -204,7 +204,7 @@
     }
 
     // Thumbs right
-    &.rightNav {
+    &.#{$right-postion-class-name}-nav {
         .stage {
             width:400px;
             float:left;

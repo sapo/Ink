@@ -9,13 +9,13 @@
             @include nav-menu();
 
             // defines custom themes
-            &.white     { @include nav-menu($white); }
-            &.grey      { @include nav-menu($grey-15); }
-            &.black     { @include nav-menu($grey-90); }
-            &.blue      { @include nav-menu($blue); }
-            &.green     { @include nav-menu($green); }
-            &.orange    { @include nav-menu($orange); }
-            &.red       { @include nav-menu($red); }
+            &.#{$white-classname}     { @include nav-menu($white); }
+            &.#{$grey-classname}      { @include nav-menu($grey-15); }
+            &.#{$black-classname}     { @include nav-menu($grey-90); }
+            &.#{$blue-classname}      { @include nav-menu($blue); }
+            &.#{$green-classname}     { @include nav-menu($green); }
+            &.#{$orange-classname}    { @include nav-menu($orange); }
+            &.#{$red-classname}       { @include nav-menu($red); }
         }
     }
 }

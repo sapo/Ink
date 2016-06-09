@@ -11,13 +11,13 @@
             @include nav-breadcrumbs();
 
             // defines custom themes
-            &.white     { @include nav-breadcrumbs($white); }
-            &.grey      { @include nav-breadcrumbs($grey-15); }
-            &.black     { @include nav-breadcrumbs($grey-90); }
-            &.blue      { @include nav-breadcrumbs($blue); }
-            &.orange    { @include nav-breadcrumbs($orange); }
-            &.green     { @include nav-breadcrumbs($green); }
-            &.red       { @include nav-breadcrumbs($red); }
+            &.#{$white-classname}     { @include nav-breadcrumbs($white); }
+            &.#{$grey-classname}      { @include nav-breadcrumbs($grey-15); }
+            &.#{$black-classname}     { @include nav-breadcrumbs($grey-90); }
+            &.#{$blue-classname}      { @include nav-breadcrumbs($blue); }
+            &.#{$orange-classname}    { @include nav-breadcrumbs($orange); }
+            &.#{$green-classname}     { @include nav-breadcrumbs($green); }
+            &.#{$red-classname}       { @include nav-breadcrumbs($red); }
         }
     }
 }

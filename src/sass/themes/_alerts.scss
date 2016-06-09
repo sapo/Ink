@@ -23,7 +23,7 @@
         &.info      { @include alert(block, $blue); }
     }
 
-    .ink-dismiss {
+    .#{$ink-class-prefix}-dismiss {
         font-family: Arial, sans-serif;
         font-weight: bold;
         @include text-shadow($white 0 1px 0);

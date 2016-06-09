@@ -6,7 +6,7 @@
 .#{$fa-css-prefix}-rotate-270 { @include fa-icon-rotate(270deg, 3); }
 
 .#{$fa-css-prefix}-flip-horizontal { @include fa-icon-flip(-1, 1, 0); }
-.#{$fa-css-prefix}-flip-vertical   { @include fa-icon-flip(1, -1, 2); }
+.#{$fa-css-prefix}-flip-#{$vertical}   { @include fa-icon-flip(1, -1, 2); }
 
 // Hook for IE8-9
 // -------------------------

@@ -28,16 +28,16 @@
         &:hover { @include box-shadow(none); }
     }
     
-    &.blue      { @include ink-button($blue, $white); }
-    &.green     { @include ink-button($green, $white); }
-    &.orange    { @include ink-button($orange, $white); }
-    &.red       { @include ink-button($red, $white); }
-    &.black     { @include ink-button($grey-90, $white); }
-    &.white     { @include ink-button($white, $text-color); }
+    &.#{$blue-classname}      { @include ink-button($blue, $white); }
+    &.#{$green-classname}     { @include ink-button($green, $white); }
+    &.#{$orange-classname}    { @include ink-button($orange, $white); }
+    &.#{$red-classname}       { @include ink-button($red, $white); }
+    &.#{$black-classname}     { @include ink-button($grey-90, $white); }
+    &.#{$white-classname}     { @include ink-button($white, $text-color); }
   
 }
 
-.button-group {
+.#{$button-class-name}-group {
 
     & > .#{$button-class-name}  {
 
@@ -49,11 +49,11 @@
             }
         }
 
-        &.blue      { @include button-group($blue);}
-        &.green     { @include button-group($green);}
-        &.orange    { @include button-group($orange);}
-        &.red       { @include button-group($red);}
-        &.black     { @include button-group($grey-90);}
-        &.white     { @include button-group($white);}
+        &.#{$blue-classname}      { @include button-group($blue);}
+        &.#{$green-classname}     { @include button-group($green);}
+        &.#{$orange-classname}    { @include button-group($orange);}
+        &.#{$red-classname}       { @include button-group($red);}
+        &.#{$black-classname}     { @include button-group($grey-90);}
+        &.#{$white-classname}     { @include button-group($white);}
     }
 }
