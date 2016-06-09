@@ -87,20 +87,20 @@
 .ink-tooltip.blue > .arrow.right {
   border-left-color: #0f75da;
 }
-.ink-tooltip.#{$red-classname} > .content {
+.ink-tooltip.red > .content {
   background: #c91111;
   color: #ffffff;
 }
-.ink-tooltip.#{$red-classname} > .arrow.up {
+.ink-tooltip.red > .arrow.up {
   border-bottom-color: #c91111;
 }
-.ink-tooltip.#{$red-classname} > .arrow.down {
+.ink-tooltip.red > .arrow.down {
   border-top-color: #c91111;
 }
-.ink-tooltip.#{$red-classname} > .arrow.left {
+.ink-tooltip.red > .arrow.left {
   border-right-color: #c91111;
 }
-.ink-tooltip.#{$red-classname} > .arrow.right {
+.ink-tooltip.red > .arrow.right {
   border-left-color: #c91111;
 }
 .ink-tooltip.orange > .content {
