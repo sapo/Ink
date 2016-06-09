@@ -657,7 +657,7 @@ th {
 .button-toolbar {
   *zoom: 1;
 }
-.button-toolbar > .ink-button-group {
+.button-toolbar > .button-group {
   margin-right: 10px;
   float: left;
 }
