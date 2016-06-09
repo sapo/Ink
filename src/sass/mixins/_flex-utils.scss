@@ -1,10 +1,10 @@
 // show hidden element
-.#{$show}-all {
+.#{$show}-#{$all} {
     display: inherit;
 }
 
 // hide visible element
-.#{$hide}-all {
+.#{$hide}-#{$all} {
     display: none !important;
 }
 

@@ -48,7 +48,7 @@
 
 .button-toolbar {
     
-    & > .#{$button-class-name}-group {
+    & > .button-group {
         margin-right: $button-margin * 2;
         float: left;
     }
