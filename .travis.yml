@@ -7,8 +7,10 @@ branches:
     - staging
     - develop
     - gh-pages
-before_script:
+install:
+  - npm install
   - gem install compass
   - npm install -g grunt-cli
   - npm install -g bower
-script: "grunt --verbose"
+script:
+  - "grunt --verbose"
