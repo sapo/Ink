@@ -57,7 +57,7 @@ We'd love to have your contribution so, here's a quick guide:
 1. To Make sure your changes don't break compilation, run ``grunt css``.
 5. Push to your fork and submit a pull request. Please be as descriptive as possible about the reason for your changes.
 
-###Style guide
+### Style guide
 
 We're not really strict with Sass code but adhering to these guidelines will help us:
 

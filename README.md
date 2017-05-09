@@ -1,4 +1,4 @@
-#Welcome to [Ink](http://ink.sapo.pt) [![Build Status](https://travis-ci.org/sapo/Ink.svg?branch=develop)](https://travis-ci.org/sapo/Ink) [![devDependency Status](https://david-dm.org/sapo/Ink/dev-status.svg)](https://david-dm.org/sapo/Ink#info=devDependencies)
+# Welcome to [Ink](http://ink.sapo.pt) [![Build Status](https://travis-ci.org/sapo/Ink.svg?branch=develop)](https://travis-ci.org/sapo/Ink) [![devDependency Status](https://david-dm.org/sapo/Ink/dev-status.svg)](https://david-dm.org/sapo/Ink#info=devDependencies)
 
 Ink is an interface kit for quick development of web interfaces, simple to use and expand on. It uses a combination of HTML, CSS and JavaScript to offer modern solutions for building layouts, display common interface elements and implement interactive features that are content-centric and user friendly for both your audience and your designers & developers.
 
@@ -19,9 +19,9 @@ Let's get you started with Ink right away. Here's what you need to know and do:
 5. Keep coming back to the documentation to help you along the way.
 6. That's it! You'll see how easy it is once you pick it up.
 
-##Repository
+## Repository
 
-###Branches
+### Branches
 
 * **[master](https://github.com/sapo/Ink/tree/master)** -  The master branch contains the latest release as its HEAD and all previous releases as tags named as the version numbers.
 * **[staging](https://github.com/sapo/Ink/tree/staging)** - The staging branch is a semi-stable branch containing code from the develop branch which is under testing and will, eventually, go into the next release.
@@ -31,7 +31,7 @@ Let's get you started with Ink right away. Here's what you need to know and do:
 
 ___
 
-###Structure
+### Structure
 
 Since version 2.3.0 we've moved things around in order keep source code from distribution code separated:
 
@@ -56,9 +56,9 @@ We've also unified our build system using [Grunt](http://gruntjs.com/) and [Bowe
 
 ---
 
-##Building from source
+## Building from source
 
-###Required tools
+### Required tools
 If you want to build from our source code, you'll need to install a few things:
 * [Node.js](http://nodejs.org/)
 * [Ruby](https://www.ruby-lang.org/en/downloads/)
