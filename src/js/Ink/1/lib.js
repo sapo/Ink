@@ -39,6 +39,46 @@
         return true;
     };
 
+    //extend and clone functions
+    var extendFunc = (function( ) {
+        var indexOf = function( arr , elem ) {
+            if ( arr.indexOf ) { return arr.indexOf( elem ); }
+
+            for ( var k = 0, l = arr.length; k < l; k++ ) {
+                if ( arr[ k ] === elem ) { return k; }
+            }
+
+            return -1;
+        };
+
+        var extend = function( deep , obj , aux , cache , path ) {
+            if ( obj === null || typeof obj !== 'object' ) {
+                return obj;
+            } else if ( obj instanceof Date ) {
+                return new Date( obj.getTime( ) );
+            } else {
+                var k, idx;
+
+                cache.push( obj );
+                path.push( aux );
+
+                for ( k in obj ) {
+                    if( !obj.hasOwnProperty( k ) ) { continue; }
+
+                    aux[ k ] = obj[ k ] instanceof Array ? [ ] : { };
+
+                    aux[ k ] = ( idx = indexOf( cache , obj[ k ] ) ) >= 0 ? path[ idx ] : 
+                                                                     deep ? extend( deep , obj[ k ] , aux[ k ] , cache , path ) :
+                                                                            obj[ k ];
+                }
+
+                return aux;
+            }
+        };
+
+        return extend;
+    })( );
+
     /**
      * @namespace Ink_1
      */
@@ -594,24 +634,45 @@
          * @method extendObj
          * @param {Object} destination  The object that will receive the new/updated properties
          * @param {Object} source       The object whose properties will be copied over to the destination object
-         * @param {Object} [more...]    Additional source objects. The last source will override properties of the same name in the previous defined sources
-         * @return {Object} destination object, enriched with defaults from the sources
-         * @sample Ink_1_extendObj.html
+         * @param {Object} [args*]      Additional source objects. The last source will override properties of the same name in the previous defined sources
+         * @return destination object, enriched with defaults from the sources
+         * @sample Ink_1_extendObj.html 
          */
-        extendObj: function(destination/*, source... */) {
-            var sources = [].slice.call(arguments, 1);
+        extendObj: function( isDeep/* optional */ , destination , source/*1 , source2 ...*/ ) {
+            var args = Array.prototype.slice.call( arguments );
 
-            for (var i = 0, len = sources.length; i < len; i++) {
-                if (!sources[i]) { continue; }
-                for (var property in sources[i]) {
-                    if(Object.prototype.hasOwnProperty.call(sources[i], property)) {
-                        destination[property] = sources[i][property];
-                    }
-                }
+            var deep = typeof isDeep === 'boolean' ? args.shift( ) : false;
+
+            var dest = args.shift( ) || ( args[ 0 ] instanceof Array ? [ ] : { } );
+
+            for ( var i = 0, l = args.length; i < l; i++ ) {
+                extendFunc( deep , args[ i ] , dest , [ ] , [ ] );
             }
 
-            return destination;
-        },
+            return dest;
+        } ,
+
+        /**
+         * Clone object source
+         *
+         * @function cloneObj
+         * @param {Boolean} [isDeep]
+         * @param {Object} source
+         * @return cloned object source
+         */
+        cloneObj : function( isDeep/* optional */ , source/*1 , source2 ...*/ ) {
+            var args = Array.prototype.slice.call( arguments );
+
+            var deep = typeof isDeep === 'boolean' ? args.shift( ) : false;
+
+            var dest = ( args[ 0 ] instanceof Array ? [ ] : { } );
+
+            for ( var i = 0, l = args.length; i < l; i++ ) {
+                extendFunc( deep , args[ i ] , dest , [ ] , [ ] );
+            }
+
+            return dest;
+        } ,
 
         /**
          * Calls native console.log if available.
