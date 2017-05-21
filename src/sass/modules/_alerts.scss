@@ -13,7 +13,7 @@
 
         p { margin: 0 }
 
-        .ink-close {
+        .#{$ink-class-prefix}-close {
             top:.55em; *top:.2em;
         }
     }

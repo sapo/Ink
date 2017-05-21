@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Ink
  *
@@ -48,6 +49,18 @@
  */
 /**
  * JS UI components classe names
+ */
+/**
+ * Colors
+ */
+/**
+ * Postion
+ */
+/**
+ * Hide/Show
+ */
+/**
+ * Space/Padding/Marign
  */
 /** 
  * Sets the grids maximum width
@@ -4837,15 +4850,15 @@ html.no-flexboxlegacy:after {
   content: '[{"name":"xlarge", "size":{"min":"1261px","max":""}},{"name":"large", "size":{"min":"961px","max":"1260px"}},{"name":"medium", "size":{"min":"641px","max":"960px"}},{"name":"small", "size":{"min":"321px","max":"640px"}},{"name":"tiny", "size":{"min":"","max":"320px"}}]';
   display: none;
 }
-html.no-flexbox .ink-carousel,
-html.no-flexboxlegacy .ink-carousel {
+html.no-flexbox .ink-carousel ,
+html.no-flexboxlegacy .ink-carousel  {
   width: 100%;
   position: relative;
   overflow: hidden;
   display: block;
 }
-html.no-flexbox .ink-carousel .stage,
-html.no-flexboxlegacy .ink-carousel .stage {
+html.no-flexbox .ink-carousel  .stage,
+html.no-flexboxlegacy .ink-carousel  .stage {
   width: 100%;
   left: 0;
   height: auto !important;
@@ -4860,8 +4873,8 @@ html.no-flexboxlegacy .ink-carousel .stage {
   -o-transition: left 0.5s ease;
   transition: left 0.5s ease;
 }
-html.no-flexbox .ink-carousel .stage .slide,
-html.no-flexboxlegacy .ink-carousel .stage .slide {
+html.no-flexbox .ink-carousel  .stage .slide,
+html.no-flexboxlegacy .ink-carousel  .stage .slide {
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -4871,8 +4884,8 @@ html.no-flexboxlegacy .ink-carousel .stage .slide {
   zoom: 1;
   *display: inline;
 }
-html.no-flexbox .ink-carousel .ink-navigation,
-html.no-flexboxlegacy .ink-carousel .ink-navigation {
+html.no-flexbox .ink-carousel  .ink-navigation,
+html.no-flexboxlegacy .ink-carousel  .ink-navigation {
   position: static;
 }
 html.no-flexbox .ink-form fieldset,

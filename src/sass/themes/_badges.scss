@@ -3,30 +3,30 @@
     @include border-radius(8em);
     color: $white;
     
-    &.white {
+    &.#{$white-classname} {
         background: $white;
         color: $text-color;
     }
-    &.black {
+    &.#{$black-classname} {
         background: $black;
     }
-    &.orange {
+    &.#{$orange-classname} {
         background: $orange;
     }
-    &.red {
+    &.#{$red-classname} {
         background: $red;
     }
-    &.green {
+    &.#{$green-classname} {
         background: $green;
     }
-    &.blue {
+    &.#{$blue-classname} {
         background: $blue;
     }
-    &.yellow {
+    &.#{$yellow-classname} {
         background: $yellow;
         color: $text-color;
     }
-    &.grey {
+    &.#{$grey-classname} {
         background: $grey-50;
     }
 

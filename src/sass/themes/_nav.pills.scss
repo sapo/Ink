@@ -8,12 +8,12 @@
             @include nav-pills();
 
             // defines custom themes
-            &.grey      { @include nav-pills($grey-15); }
-            &.black     { @include nav-pills($grey-90); }
-            &.blue      { @include nav-pills($blue); }
-            &.green     { @include nav-pills($green); }
-            &.orange    { @include nav-pills($orange); }
-            &.red       { @include nav-pills($red); }
+            &.#{$grey-classname}      { @include nav-pills($grey-15); }
+            &.#{$black-classname}     { @include nav-pills($grey-90); }
+            &.#{$blue-classname}      { @include nav-pills($blue); }
+            &.#{$green-classname}     { @include nav-pills($green); }
+            &.#{$orange-classname}    { @include nav-pills($orange); }
+            &.#{$red-classname}       { @include nav-pills($red); }
 
         }
     }

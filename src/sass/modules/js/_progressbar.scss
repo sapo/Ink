@@ -29,27 +29,27 @@
         @include transition-duration(0.6s);
         @include transition-timing-function(ease);
 
-        &.grey {            
+        &.#{$grey-classname} {            
             @include themeing($grey-20);
         }
         
-        &.green {
+        &.#{$green-classname} {
             @include themeing($green);
         }
         
-        &.blue {
+        &.#{$blue-classname} {
             @include themeing($blue);              
         }
         
-        &.red {
+        &.#{$red-classname} {
             @include themeing($red);              
         }
         
-        &.orange {
+        &.#{$orange-classname} {
             @include themeing($orange);
         }
         
-        &.black {
+        &.#{$black-classname} {
             @include themeing($black);
         }
     }

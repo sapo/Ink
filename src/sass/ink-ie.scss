@@ -16,8 +16,8 @@
 @import "contrib/compass/typography";
 
 // IMPORT CONFIG FILES (THESE CONTAIN VARIABLE DEFINITIONS)
-@import "functions/_js-bridge.scss";
 @import "config/classnames";
+@import "functions/_js-bridge.scss";
 @import "config/grid";
 
 // IMPORT MIXINS FILES (THESE CONTAIN HELPER FUNCTIONS)

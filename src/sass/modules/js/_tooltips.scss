@@ -15,12 +15,15 @@
 
         position: absolute;
 
-        &.up, &.down, &.left, &.right {
+        &.#{$up-postion-class-name},
+        &.#{$down-postion-class-name}, 
+        &.#{$left-postion-class-name}, 
+        &.#{$right-postion-class-name} {
             width: 0; 
             height: 0;
         }
 
-        &.up {           
+        &.#{$up-postion-class-name} {           
             border-left: $tooltip-arrow-size solid transparent;
             border-right: $tooltip-arrow-size solid transparent;
             border-bottom: $tooltip-arrow-size solid $tooltip-background-color;
@@ -29,7 +32,7 @@
             margin-left: -($tooltip-arrow-size / 2);
         }
 
-        &.down {             
+        &.#{$down-postion-class-name} {             
             border-left: $tooltip-arrow-size solid transparent;
             border-right: $tooltip-arrow-size solid transparent;
             border-top: $tooltip-arrow-size solid $tooltip-background-color;
@@ -38,7 +41,7 @@
             margin-left: -($tooltip-arrow-size / 2);
         }
 
-        &.right {            
+        &.#{$right-postion-class-name} {            
             border-top: $tooltip-arrow-size solid transparent;
             border-bottom: $tooltip-arrow-size solid transparent;
             border-left: $tooltip-arrow-size solid $tooltip-background-color;
@@ -47,7 +50,7 @@
             margin-top: -($tooltip-arrow-size);
         }
 
-        &.left {             
+        &.#{$left-postion-class-name} {             
             border-top: $tooltip-arrow-size solid transparent;
             border-bottom: $tooltip-arrow-size solid transparent; 
             border-right:$tooltip-arrow-size solid $tooltip-background-color; 
@@ -57,77 +60,77 @@
         }
     }
     
-    &.blue { 
+    &.#{$blue-classname} { 
         & > .content { 
             background: $blue;
             color: $white;
         }
         & > .arrow {
-            &.up { border-bottom-color: $blue; }
-            &.down { border-top-color: $blue; }
-            &.left { border-right-color: $blue; }
-            &.right { border-left-color: $blue; }
+            &.#{$up-postion-class-name} { border-bottom-color: $blue; }
+            &.#{$down-postion-class-name} { border-top-color: $blue; }
+            &.#{$left-postion-class-name} { border-right-color: $blue; }
+            &.#{$right-postion-class-name} { border-left-color: $blue; }
         }
     }
-    &.red { 
+    &.#{$red-classname} { 
         & > .content { 
             background: $red;
             color: $white;
         }
         & > .arrow {
-            &.up { border-bottom-color: $red; }
-            &.down { border-top-color: $red; }
-            &.left { border-right-color: $red; }
-            &.right { border-left-color: $red; }
+            &.#{$up-postion-class-name} { border-bottom-color: $red; }
+            &.#{$down-postion-class-name} { border-top-color: $red; }
+            &.#{$left-postion-class-name} { border-right-color: $red; }
+            &.#{$right-postion-class-name} { border-left-color: $red; }
         }
     }
-    &.orange { 
+    &.#{$orange-classname} { 
         & > .content { 
             background: $orange;
             color: $white;
         }
         & > .arrow {
-            &.up { border-bottom-color: $orange; }
-            &.down { border-top-color: $orange; }
-            &.left { border-right-color: $orange; }
-            &.right { border-left-color: $orange; }
+            &.#{$up-postion-class-name} { border-bottom-color: $orange; }
+            &.#{$down-postion-class-name} { border-top-color: $orange; }
+            &.#{$left-postion-class-name} { border-right-color: $orange; }
+            &.#{$right-postion-class-name} { border-left-color: $orange; }
         }
     }
-    &.green { 
+    &.#{$green-classname} { 
         & > .content { 
             background: $green;
             color: $white;
         }
         & > .arrow {
-            &.up { border-bottom-color: $green; }
-            &.down { border-top-color: $green; }
-            &.left { border-right-color: $green; }
-            &.right { border-left-color: $green; }
+            &.#{$up-postion-class-name} { border-bottom-color: $green; }
+            &.#{$down-postion-class-name} { border-top-color: $green; }
+            &.#{$left-postion-class-name} { border-right-color: $green; }
+            &.#{$right-postion-class-name} { border-left-color: $green; }
         }
     }
-    &.black { 
+    &.#{$black-classname} { 
         & > .content { 
             background: $black;
             color: $white;
         }
         & > .arrow {
-            &.up { border-bottom-color: $black; }
-            &.down { border-top-color: $black; }
-            &.left { border-right-color: $black; }
-            &.right { border-left-color: $black; }
+            &.#{$up-postion-class-name} { border-bottom-color: $black; }
+            &.#{$down-postion-class-name} { border-top-color: $black; }
+            &.#{$left-postion-class-name} { border-right-color: $black; }
+            &.#{$right-postion-class-name} { border-left-color: $black; }
         }
     }
 
-    &.grey { 
+    &.#{$grey-classname} { 
         & > .content { 
             background: $grey-20;
             color: $grey-80;
         }
         & > .arrow {
-            &.up { border-bottom-color: $grey-20; }
-            &.down { border-top-color: $grey-20; }
-            &.left { border-right-color: $grey-20; }
-            &.right { border-left-color: $grey-20; }
+            &.#{$up-postion-class-name} { border-bottom-color: $grey-20; }
+            &.#{$down-postion-class-name} { border-top-color: $grey-20; }
+            &.#{$left-postion-class-name} { border-right-color: $grey-20; }
+            &.#{$right-postion-class-name} { border-left-color: $grey-20; }
         }
     }
 

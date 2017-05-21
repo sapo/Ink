@@ -1,4 +1,4 @@
-table.#{$table-class-name} {
+ table.#{$table-class-name} {
 
     background: $table-background;
 
@@ -75,7 +75,7 @@ table.#{$table-class-name} {
 
         & > tr {
 
-            &.red {
+            &.#{$red-classname} {
                 td {
                     background: $red;
                     color: lighten($red,80%);
@@ -83,7 +83,7 @@ table.#{$table-class-name} {
             }
 
             
-            &.green {
+            &.#{$green-classname} {
                 td {
                     background: $green;
                     color: lighten($green,80%);
@@ -91,7 +91,7 @@ table.#{$table-class-name} {
             }
 
             
-            &.blue {
+            &.#{$blue-classname} {
                 td {
                     background: $blue;
                     color: lighten($blue,80%);
@@ -99,7 +99,7 @@ table.#{$table-class-name} {
             }
 
             
-            &.orange {
+            &.#{$orange-classname} {
                 td {
                     background: $orange;
                     color: lighten($orange,80%);
@@ -107,7 +107,7 @@ table.#{$table-class-name} {
             }
 
             
-            &.black {
+            &.#{$black-classname} {
                 td {
                     background: $black;
                     color: lighten($black,80%);
@@ -115,14 +115,14 @@ table.#{$table-class-name} {
             }
 
             
-            &.yellow {
+            &.#{$yellow-classname} {
                 td {
                     background: $yellow;
                     color: darken($yellow,80%);
                 }
             }
 
-            &.grey {
+            &.#{$grey-classname} {
                 td {
                     background: $grey-10;
                     color: darken($grey-10,80%);

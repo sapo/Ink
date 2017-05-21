@@ -8,11 +8,11 @@ $ink-class-prefix             : ink !default;
  * Grid class names
  */
 $horizontal : horizontal !default;
-$vertical: vertical !default;
-$half: half !default;
-$quarter: quarter !default;
-$double: double !default;
-$no: no !default;
+$vertical   : vertical !default;
+$half       : half !default;
+$quarter    : quarter !default;
+$double     : double !default;
+$no         : no !default;
 
 $grid-class-name                : #{$ink-class-prefix}-grid !default;
 $flex-class-name                : #{$ink-class-prefix}-flex !default;
@@ -23,12 +23,10 @@ $grid-quarter-gutters-class-name: #{$quarter}-#{$grid-gutters-class-name} !defau
 $grid-double-gutters-class-name : #{$double}-#{$grid-gutters-class-name} !default;
 $grid-no-gutters-class-name     : #{$no}-#{$grid-gutters-class-name} !default;
 
-
 $grid-horizontal-gutters-class-name        : #{$horizontal}-#{$grid-gutters-class-name} !default;
 $grid-half-horizontal-gutters-class-name   : #{$half}-#{$horizontal}-#{$grid-gutters-class-name} !default;
 $grid-quarter-horizontal-gutters-class-name: #{$quarter}-#{$horizontal}-#{$grid-gutters-class-name} !default;
 $grid-double-horizontal-gutters-class-name : #{$double}-#{$horizontal}-#{$grid-gutters-class-name} !default;
-
 
 $grid-vertical-gutters-class-name        : #{$vertical}-#{$grid-gutters-class-name} !default;
 $grid-half-vertical-gutters-class-name   : #{$half}-#{$vertical}-#{$grid-gutters-class-name} !default;
@@ -89,7 +87,7 @@ $image-class-name: #{$ink-class-prefix}-image !default;
 /**
  * JS UI components classe names
  */
-$carousel-class-name        : #{$ink-class-prefix}-carousel !default;
+$carousel-class-name        : #{$ink-class-prefix}-carousel !default;
 $datepicker-class-name      : #{$ink-class-prefix}-datepicker !default;
 $drawer-class-name          : #{$ink-class-prefix}-drawer !default;
 $shade-class-name           : #{$ink-class-prefix}-shade !default;
@@ -102,3 +100,46 @@ $tagfield-class-name        : #{$ink-class-prefix}-tagfield !default;
 $tag-class-name             : #{$ink-class-prefix}-tag !default;
 $tooltip-class-name         : #{$ink-class-prefix}-tooltip !default;
 $tree-view-classname        : #{$ink-class-prefix}-tree-view !default;
+
+/**
+ * Colors
+ */
+$red-classname          : red !default;
+$blue-classname         : blue !default;
+$green-classname        : green !default;
+$white-classname        : white !default;
+$yellow-classname       : yellow !default;
+$black-classname        : black !default;
+$orange-classname       : orange !default;
+$grey-classname			: grey !default;
+
+/**
+ * Postion
+ */
+$bottom-postion-class-name  : bottom !default;
+$top-postion-class-name     : top !default;
+$left-postion-class-name    : left !default;
+$right-postion-class-name   : right !default;
+$center-postion-class-name  : center !default;
+$middle-postion-class-name  : middle !default;
+
+$up-postion-class-name      : up !default;
+$down-postion-class-name    : down !default;
+
+$push-postion-class-name    : push !default;
+$pull-postion-class-name    : pull !default;
+
+$align-postion-class-name   : align !default;
+
+/**
+ * Hide/Show
+ */
+$hide : hide !default;
+$show : show !default;
+
+/**
+ * Space/Padding/Marign
+ */
+$space      : space !default;
+$padding    : padding !default;
+$margin     : margin !default;
