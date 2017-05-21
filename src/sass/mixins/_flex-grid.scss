@@ -50,6 +50,8 @@
         -webkit-align-self: flex-start;
         -ms-flex-item-align: start;
         align-self: flex-start;
+        -webkit-flex: 1;
+        flex: 1;
     }
 
     .push-bottom,
@@ -62,6 +64,8 @@
         -webkit-align-self: flex-end;
         -ms-flex-item-align: end;
         align-self: flex-end;
+        -webkit-flex: 1;
+        flex: 1;
     }
 
     .push-middle,
@@ -74,6 +78,8 @@
         -webkit-align-self: center;
         -ms-flex-item-align: center;
         align-self: center;
+        -webkit-flex: 1;
+        flex: 1;
     }
 
     .push-left,
