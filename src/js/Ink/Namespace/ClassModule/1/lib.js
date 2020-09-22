@@ -18,7 +18,7 @@ Ink.createModule(
     'Ink.Namespace.ClassModule',          // full module name
     '1',                                  // module's version
     ['Ink.Dom.Event_1', 'Ink.Dom.Css_1'], // array of dependency modules
-    function(Event, Css) {                // this fn will be called async with depencies as arguments
+    function(Event, Css) {                // this fn will be called async with dependencies as arguments
 
         'use strict';
 
